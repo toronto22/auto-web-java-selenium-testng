@@ -11,7 +11,7 @@ import BankProject.page_object_model.ManagerPage;
 public class AddCustomerTest extends BaseTest {
     AddCustomerPage addCustomerPage;
 
-    String errorMessage = "Please fill in this field.";
+    String errorMessage = "Please fill out this field.";
 
     @Before
     public void ClassSetUp() {

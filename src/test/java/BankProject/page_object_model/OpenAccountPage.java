@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import BankProject.WebUrl;
-import Common.NData;
+import Common.DataProcess.NData;
 import Common.Selenium.NSelenium;
 
 public class OpenAccountPage extends BasePage {

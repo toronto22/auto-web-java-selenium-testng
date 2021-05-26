@@ -1,4 +1,4 @@
-package Common;
+package Common.DataProcess;
 
 
 public class NData {

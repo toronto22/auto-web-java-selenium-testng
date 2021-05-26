@@ -1,24 +1,22 @@
 package BankProject;
 
+import java.net.URL;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class SeleniumHelper {
-    private static ConfigurationHelper config = ConfigurationHelper.Instance();
+    private static ConfigurationHelper config;
 
-
-    public static WebDriver initDriver()
-    {
-        // Boolean isGrid = config.IsSeleniumGrid;
-        Boolean isGrid = false;
+    public static WebDriver initDriver() {
+        config = ConfigurationHelper.Instance();
+        Boolean isGrid = config.IsSeleniumGrid;
         WebDriver driver;
-        if (isGrid)
-        {
+        if (isGrid) {
             driver = initGridDriver();
-        }
-        else
-        {
+        } else {
             driver = initNormalDriver();
         }
         driver.manage().window().maximize();
@@ -26,11 +24,8 @@ public class SeleniumHelper {
         return driver;
     }
 
-    private static WebDriver initNormalDriver()
-    {
-        // switch (config.Browser)
-        switch ("config.Browser")
-        {
+    private static WebDriver initNormalDriver() {
+        switch (config.Browser) {
             case "Chrome":
                 return initNormalChromeDriver();
             default:
@@ -38,12 +33,9 @@ public class SeleniumHelper {
         }
     }
 
-    private static WebDriver initNormalChromeDriver()
-    {
+    private static WebDriver initNormalChromeDriver() {
         ChromeOptions chromeOptions = new ChromeOptions();
-       // if (config.IsHeadless)
-        if (false)
-        {
+        if (config.IsHeadless) {
             chromeOptions.addArguments("--headless");
         }
 
@@ -51,10 +43,8 @@ public class SeleniumHelper {
         return new ChromeDriver(chromeOptions);
     }
 
-    private static WebDriver initGridDriver()
-    {
-        switch (config.Browser)
-        {
+    private static WebDriver initGridDriver() {
+        switch (config.Browser) {
             case "Chrome":
                 return initChromeGridDriver();
             default:
@@ -62,18 +52,20 @@ public class SeleniumHelper {
         }
     }
 
-    private static WebDriver initChromeGridDriver()
-    {
+    private static WebDriver initChromeGridDriver() {
+        WebDriver driver = null;
+
         ChromeOptions options = new ChromeOptions();
-        if (config.IsHeadless)
-        {
+        if (config.IsHeadless) {
             options.addArguments("--headless");
         }
 
-       // var driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub/"), options);
+        try {
+            driver = new RemoteWebDriver(new URL(config.GridHubUri), options);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-
-       // return driver;
-       return null;
+         return driver;
     }
 }

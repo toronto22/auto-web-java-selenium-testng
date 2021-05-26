@@ -8,12 +8,12 @@ public class BaseTest {
     protected WebDriver driver;
 
     @Before
-    public void oneTimeSetup() {
-         driver = SeleniumHelper.initDriver();
+    public void BaseSetup() {
+        driver = SeleniumHelper.initDriver();
     }
 
     @After
-    public  void OneTimeTearDown() {
+    public  void BaseTearDown() {
         driver.quit();
     }
 
