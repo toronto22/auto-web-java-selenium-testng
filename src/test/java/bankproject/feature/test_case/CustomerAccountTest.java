@@ -14,7 +14,7 @@ public class CustomerAccountTest extends WebHook {
     Account account;
 
     @Before
-    public void ClassSetUp() {
+    public void classSetUp() {
         account = BankConstants.CustomerAccountValid;
         CustomerLoginPage customerLoginPage = new CustomerLoginPage(driver);
         customerLoginPage.goTo();
@@ -22,12 +22,12 @@ public class CustomerAccountTest extends WebHook {
     }
 
     @Test
-    public void CustomerAccountPageDisplayedCorrectInformation() {
+    public void should_see_the_customer_account_information_details() {
         customerAccountPage.verifyTheCustomerInformation(account);
     }
 
     @Test
-    public void ChooseOtherAccountOfTheCustomer() {
+    public void should_see_the_other_customer_account_information_details() {
         customerAccountPage.selectAccount(BankConstants.CustomerAccountValidOther.AccountNumber);
         customerAccountPage.verifyTheCustomerInformation(BankConstants.CustomerAccountValidOther);
     }

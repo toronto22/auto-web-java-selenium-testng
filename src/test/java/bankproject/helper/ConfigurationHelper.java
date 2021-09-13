@@ -41,7 +41,7 @@ public class ConfigurationHelper
 
     private static ConfigurationHelper cache = null;
 
-    public static ConfigurationHelper Instance()
+    public static ConfigurationHelper instance()
     {
         if (cache == null) {
             synchronized (LOCK) {
