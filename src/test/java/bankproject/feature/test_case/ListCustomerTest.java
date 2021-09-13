@@ -18,22 +18,21 @@ public class ListCustomerTest extends WebHook {
     int numberOfItem = 5;
 
     @Before
-    public void ClassSetUp()
+    public void classSetUp()
     {
         listCustomersPage = new ListCustomersPage(driver);
         listCustomersPage.goTo();
-       // driver.DeleteStorage();
     }
 
     @Test
-    public void ShowListCustomersTable()
+    public void should_see_list_customer_table()
     {
         listCustomersPage.goTo();
         listCustomersPage.verifyListCustomerTable(numberOfItem);
     }
 
     @Test
-    public void ShowCustomerInformationOnTableWhenAddANewOne()
+    public void should_show_the_customer_that_is_created()
     {
         Customer customer = new Customer("W33", "Haa", "1234");
 
@@ -49,9 +48,9 @@ public class ListCustomerTest extends WebHook {
         openAccountPage.goTo();
         String customerName = customer.FirstName + " " + customer.LastName;
         openAccountPage.openAccount(customerName, BankConstants.DefaultCurrency);
-        String acountNumbers = openAccountPage.getAccountNumberIsCreatedInAlert();
-        customer.AccountNumbers = new ArrayList<String>();
-        customer.AccountNumbers.add(acountNumbers);
+        String accountNumbers = openAccountPage.getAccountNumberIsCreatedInAlert();
+        customer.AccountNumbers = new ArrayList<>();
+        customer.AccountNumbers.add(accountNumbers);
         openAccountPage.closeAlert();
 
         listCustomersPage.goTo();
@@ -59,7 +58,7 @@ public class ListCustomerTest extends WebHook {
     }
 
     @Test
-    public void DeleteCustomerInTheTable() {
+    public void should_be_able_to_delete_customer_in_the_table() {
 
         Customer customer = new Customer("W33", "Haa", "1234");
 

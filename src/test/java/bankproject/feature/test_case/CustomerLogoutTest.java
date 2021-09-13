@@ -13,14 +13,14 @@ public class CustomerLogoutTest extends WebHook {
     CustomerLoginPage customerLoginPage;
 
     @Before
-    public void ClassSetUp() {
+    public void classSetUp() {
         customerLoginPage = new CustomerLoginPage(driver);
         customerLoginPage.goTo();
         customerLoginPage.login(BankConstants.CustomerAccountValid.CustomerName);
     }
 
     @Test
-    public void CustomerLogoutFromAccountPage() {
+    public void should_able_to_log_out_from_account_page() {
         CustomerAccountPage customerAccountPage = new CustomerAccountPage(driver);
         customerAccountPage.goTo();
         customerAccountPage.logout();
@@ -28,7 +28,7 @@ public class CustomerLogoutTest extends WebHook {
     }
 
     @Test
-    public void CustomerLogoutFromTransactionsPage() {
+    public void should_able_to_log_out_from_transaction_page() {
         CustomerTransactionsPage customerTransactionPage = new CustomerTransactionsPage(driver);
         customerTransactionPage.goTo();
         customerTransactionPage.logout();
