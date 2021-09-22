@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WaitUntil {
     WebDriver driver;
-    long timeout = 10;
+    long timeout = 30;
     By by;
 
     public WaitUntil(WebDriver driver, By by){
@@ -23,14 +23,14 @@ public class WaitUntil {
     }
 
     public WebElement visible() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, timeout);
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 
         return element;
     }
 
     public WebElement exist() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, timeout);
         WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(by));
 
         return element;

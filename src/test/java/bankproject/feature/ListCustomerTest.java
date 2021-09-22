@@ -1,4 +1,4 @@
-package bankproject.feature.test_case;
+package bankproject.feature;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package bankproject.feature.test_case;
+package bankproject.feature;
 
 import org.junit.Before;
 import org.junit.Test;
