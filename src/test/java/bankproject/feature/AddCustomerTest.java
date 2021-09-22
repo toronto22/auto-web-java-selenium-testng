@@ -14,14 +14,14 @@ public class AddCustomerTest extends WebHook {
     String errorMessage = "Please fill out this field.";
 
     @Before
-    public void ClassSetUp() {
+    public void classSetUp() {
         ManagerPage managerPage = new ManagerPage(driver);
         managerPage.goTo();
         addCustomerPage = managerPage.goToAddCustomer();
     }
 
     @Test
-    public void AddACustomer() {
+    public void should_be_able_to_add_customer() {
         String firstName = "W33";
         String lastName = "Haa";
         String postCode = "123";
@@ -35,7 +35,7 @@ public class AddCustomerTest extends WebHook {
     }
 
     @Test
-    public void AddACustomerWithoutFirstName() {
+    public void should_be_able_to_validate_first_name_is_empty() {
         String firstName = "";
         String lastName = "Haa";
         String postCode = "123";
@@ -44,7 +44,7 @@ public class AddCustomerTest extends WebHook {
     }
 
     @Test
-    public void AddACustomerWithoutLastName() {
+    public void should_be_able_to_validate_last_name_is_empty() {
         String firstName = "W33";
         String lastName = "";
         String postCode = "123";
@@ -53,7 +53,7 @@ public class AddCustomerTest extends WebHook {
     }
 
     @Test
-    public void AddACustomerWithoutPostCode() {
+    public void able_to_validate_post_code_is_empty() {
         String firstName = "W33";
         String lastName = "Haa";
         String postCode = "";

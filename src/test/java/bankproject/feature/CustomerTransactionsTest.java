@@ -12,16 +12,16 @@ import bankproject.page_object_model.CustomerTransactionsPage;
 public class CustomerTransactionsTest extends WebHook {
     CustomerAccountPage customerAccountPage;
 
-         String messageExceedBalanceLitmit = "Transaction Failed. You can not withdraw amount more than the balance.";
+         String messageExceedBalanceLimit = "Transaction Failed. You can not withdraw amount more than the balance.";
          String messageDepositSuccessfully = "Deposit Successful";
-         String messageWithdrawlSuccessfully = "Transaction successful";
+         String messageWithdrawSuccessfully = "Transaction successful";
 
          int amount = 200;
          String depositType = "Credit";
-         String withdrawlType = "Debit";
+         String withdrawType = "Debit";
 
         @Before
-        public void ClassSetUp()
+        public void classSetUp()
         {
        
             CustomerLoginPage customerLoginPage = new CustomerLoginPage(driver);
@@ -30,7 +30,7 @@ public class CustomerTransactionsTest extends WebHook {
         }
 
         @Test
-        public void DepositMoney()
+        public void should_be_able_to_deposit_money()
         {
             int currentBalance = customerAccountPage.getBalance();
             customerAccountPage.deposit().withAmount(amount);
@@ -44,32 +44,32 @@ public class CustomerTransactionsTest extends WebHook {
         }
 
         @Test
-        public void WithDrawlMoneyExceedBalance() {
+        public void should_verify_the_money_withdraw_exceed_the_balance() {
             customerAccountPage.deposit().withAmount(amount);
 
             int currentBalance = customerAccountPage.getBalance();
             int exceedBalanceLimitNumber = currentBalance + 1;
             customerAccountPage.withdrawl().withAmount(exceedBalanceLimitNumber);
 
-            customerAccountPage.withdrawl().verifyMessage(messageExceedBalanceLitmit);
+            customerAccountPage.withdrawl().verifyMessage(messageExceedBalanceLimit);
             customerAccountPage.verifyBalance(currentBalance);
         }
 
         @Test
-        public void WithDrawlValidAmountOfMoney() {
+        public void should_be_able_to_withdraw_money() {
             customerAccountPage.deposit().withAmount(amount);
             int currentBalance = customerAccountPage.getBalance();
 
             customerAccountPage.withdrawl().withAmount(amount);
             int expectedBalance = currentBalance - amount;
 
-            customerAccountPage.withdrawl().verifyMessage(messageWithdrawlSuccessfully);
+            customerAccountPage.withdrawl().verifyMessage(messageWithdrawSuccessfully);
             customerAccountPage.verifyBalance(expectedBalance);
-            customerAccountPage.transactions().VerifyLastCustomerTransaction(amount, withdrawlType);
+            customerAccountPage.transactions().VerifyLastCustomerTransaction(amount, withdrawType);
         }
 
         @Test
-        public void ResetCustomerTransactions() {
+        public void should_be_able_to_reset_customer_transactions() {
             customerAccountPage.deposit().withAmount(amount);
             customerAccountPage.deposit().withAmount(amount);
             CustomerTransactionsPage transactionPage = customerAccountPage.transactions();

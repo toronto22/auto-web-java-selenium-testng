@@ -14,18 +14,18 @@ public class CustomerLoginTest extends WebHook {
     String yourNameDefaultValue = "---Your Name---";
     
     @Before
-    public void ClassSetUp() {
+    public void classSetUp() {
         customerLoginPage = new CustomerLoginPage(driver);
         customerLoginPage.goTo();
     }
 
     @Test
-    public void LoginButtonDoNotDisplayedWhenDoNotChooseYourName() {
+    public void should_not_see_the_login_button_in_default() {
         customerLoginPage.verifyLoginButtonDisplayed(false);
     }
 
     @Test
-    public void LoginButtonDisapearedWhenDeselectYourName()
+    public void login_button_should_disappear_when_deselect_your_name()
     {
         customerLoginPage.selectYourName(yourName);
         customerLoginPage.selectYourName(yourNameDefaultValue);
@@ -33,13 +33,13 @@ public class CustomerLoginTest extends WebHook {
     }
 
     @Test
-    public void LoginButtonDisplayedWhenSelectYourName() {
+    public void should_see_the_login_button_when_select_your_name() {
         customerLoginPage.selectYourName(yourName);
         customerLoginPage.verifyLoginButtonDisplayed(true);
     }
 
     @Test
-    public void Login_Successfully() {
+    public void should_able_to_login_successfully() {
         CustomerAccountPage customerAccountPage = customerLoginPage.login(yourName);
         customerAccountPage.verifyTheCustomerIsLoggedIn(yourName);
     }

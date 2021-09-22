@@ -17,13 +17,13 @@ public class OpenAccountTest extends WebHook {
 
 
     @Before
-    public void ClassSetUp() {
+    public void classSetUp() {
         openAccountPage = new OpenAccountPage(driver);
         openAccountPage.goTo();
     }
 
     @Test
-    public void OpenAnAccount() {
+    public void should_be_able_to_create_new_account() {
         openAccountPage.openAccount(BankConstants.CustomerAccountValid.CustomerName, BankConstants.CustomerAccountValid.Currency);
         String newAccountNumber = openAccountPage.getAccountNumberIsCreatedInAlert();
         openAccountPage.verifyAccountIsOpenedAndCloseAlert();
@@ -37,7 +37,7 @@ public class OpenAccountTest extends WebHook {
 
 
     @Test
-    public void OpenAnAccountWithoutSelectCustomerName()
+    public void should_verify_the_not_selected_customer_name()
     {
         openAccountPage.selectCurrency(BankConstants.CustomerAccountValid.Currency);
         openAccountPage.ClickOnProcessButton();
@@ -45,7 +45,7 @@ public class OpenAccountTest extends WebHook {
     }
 
     @Test
-    public void OpenAnAccountWithoutSelectCurrency()
+    public void should_verify_the_not_selected_currency()
     {
         openAccountPage.selectCustomer(BankConstants.CustomerAccountValid.CustomerName);
         openAccountPage.ClickOnProcessButton();
