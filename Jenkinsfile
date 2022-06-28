@@ -10,7 +10,7 @@
 
          stage('Tests') {
              steps {
-                 bat 'mvn clean install'
+                 sh 'mvn clean install'
                  junit '**/target/surefire-reports/*.xml'
              }
          }
