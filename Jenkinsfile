@@ -1,19 +1,20 @@
-pipeline {
-    agent any
+ pipeline {
+     agent any
 
-    tools{
-        maven 'maven'
-        jdk 'jdk9'
-    }
+     tools{
+         maven 'maven'
+         jdk 'jdk9'
+     }
 
-    stages {
+     stages {
 
-        stage('Tests') {
-            steps {
-                sh 'mvn clean install'
-                junit '**/target/surefire-reports/*.xml'
-            }
-        }
-    }
-}
-}
+         stage('Tests') {
+             steps {
+                 bat 'mvn clean install'
+                 junit '**/target/surefire-reports/*.xml'
+             }
+         }
+     }
+ }
+
+
