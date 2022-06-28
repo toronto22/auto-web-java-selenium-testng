@@ -38,8 +38,8 @@ public class ListCustomersPage extends BasePage {
     public List<Customer> getCustomerInformation()
         {
             List<Customer> result = new ArrayList<Customer>();
-            var items = selenium.table(customerTable).getTableData();
-             for (var item : items)
+            List<List<String>> items = selenium.table(customerTable).getTableData();
+             for (List<String> item : items)
              {
                  String firstName = item.get(0);
                  String lastName = item.get(1);
@@ -59,7 +59,7 @@ public class ListCustomersPage extends BasePage {
 
     public void verifyCustomerIsExisted(Customer customer) {
         List<Customer> customers = getCustomerInformation();
-        var isContains = customers.stream().anyMatch(p -> p.FirstName.equals(customer.FirstName) && p.LastName.equals(customer.LastName) && p.PostCode.equals(customer.PostCode));
+        boolean isContains = customers.stream().anyMatch(p -> p.FirstName.equals(customer.FirstName) && p.LastName.equals(customer.LastName) && p.PostCode.equals(customer.PostCode));
         assertThat(isContains,is(true));
     }
 

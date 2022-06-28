@@ -61,16 +61,16 @@ public class CustomerAccountPage extends CustomerPage {
     }
 
     public void verifyBalance(int expectedBalance) {
-        var currentBalance = getBalance();
+        int currentBalance = getBalance();
 
         assertThat(currentBalance, is(expectedBalance));       
     }
 
     public Account getAccountInformation() {
-        var customerName = selenium.waitUntil(customerNameTxt).visible().getText();
-        var accountNumber = selenium.waitUntil(accountNumberTxt).visible().getText();
-        var balance = getBalance();
-        var currency = selenium.waitUntil(currencyTxt).visible().getText();
+        String customerName = selenium.waitUntil(customerNameTxt).visible().getText();
+        String accountNumber = selenium.waitUntil(accountNumberTxt).visible().getText();
+        int balance = getBalance();
+        String currency = selenium.waitUntil(currencyTxt).visible().getText();
 
         Account result = new Account(customerName, accountNumber, balance, currency);
         return result;
@@ -87,13 +87,13 @@ public class CustomerAccountPage extends CustomerPage {
     }
 
     public void verifyTheCustomerIsLoggedIn(String customerName) {
-        var userName = selenium.waitUntil(customerNameTxt).visible().getText();
+        String userName = selenium.waitUntil(customerNameTxt).visible().getText();
 
         assertThat(userName, is(customerName));
     }
 
     public void verifyTheCustomerInformation(Account account) {
-        var currentAccount = getAccountInformation();
+        Account currentAccount = getAccountInformation();
 
         assertThat(currentAccount, is(samePropertyValuesAs(account)));
     }
@@ -114,7 +114,7 @@ public class CustomerAccountPage extends CustomerPage {
         }
 
         public void verifyMessage(String expectedMessage) {
-            var currentmessage = selenium.waitUntil(errorMessageTxt).visible().getText();
+            String currentmessage = selenium.waitUntil(errorMessageTxt).visible().getText();
 
             assertThat(currentmessage, is(expectedMessage));
         }

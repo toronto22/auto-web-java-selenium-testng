@@ -87,8 +87,8 @@ public class CustomerTransactionsPage  extends CustomerPage {
 
     public void VerifyLastCustomerTransaction(int amount, String type)
     {
-        var transactions = getTransactionInformations();
-        var lastTransaction = transactions.get(transactions.size() - 1);
+        List<CustomerTransaction> transactions = getTransactionInformations();
+        CustomerTransaction lastTransaction = transactions.get(transactions.size() - 1);
 
         assertThat(lastTransaction.Amount, is(amount));
         assertThat(lastTransaction.Type, is(type));
