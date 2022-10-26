@@ -13,19 +13,19 @@ public class Table {
     WebElement table;
     Selenium selenium;
 
-    public Table(WebDriver driver, By by){
+    public Table(WebDriver driver, By by) {
         selenium = Selenium.Init(driver);
         table = selenium.waitUntil(by).visible();
     }
 
-    public List<List<String>> getTableData(){
-        List<List<String>> retults = new ArrayList<List<String>>();
+    public List<List<String>> getTableData() {
+        List<List<String>> retults = new ArrayList<>();
         WebElement tbody = table.findElement(By.tagName("tbody"));
         List<WebElement> rows = tbody.findElements(By.tagName("tr"));
-        for(WebElement row : rows){
+        for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
-            List<String> rowData = new ArrayList<String>();
-            for(WebElement cell : cells){
+            List<String> rowData = new ArrayList<>();
+            for (WebElement cell : cells) {
                 rowData.add(cell.getText());
             }
             retults.add(rowData);

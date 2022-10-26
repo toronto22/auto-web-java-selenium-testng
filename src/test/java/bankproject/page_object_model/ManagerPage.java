@@ -1,6 +1,6 @@
 package bankproject.page_object_model;
 
-import static org.hamcrest.MatcherAssert.assertThat; 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import org.openqa.selenium.By;
@@ -23,7 +23,7 @@ public class ManagerPage extends BasePage {
     public void verifyPageIsActive() {
         boolean isDisplayed = selenium.waitUntil(addCustomerBtn).visible().isDisplayed();
 
-        assertThat(isDisplayed,is(true));
+        assertThat(isDisplayed, is(true));
     }
 
     public AddCustomerPage goToAddCustomer() {

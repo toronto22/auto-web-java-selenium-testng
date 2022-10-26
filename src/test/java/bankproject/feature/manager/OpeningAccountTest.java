@@ -32,21 +32,19 @@ public class OpeningAccountTest extends WebHook {
         homePage.goTo();
         CustomerLoginPage customerLoginPage = homePage.customerLogin();
         CustomerAccountPage customerAccountPage = customerLoginPage.login(BankConstants.CustomerAccountValid.CustomerName);
-        customerAccountPage.verifyCutomerHaveAccount(newAccountNumber);
+        customerAccountPage.verifyCustomerHaveAccount(newAccountNumber);
     }
 
 
     @Test
-    public void validate_manager_open_account_with_empty_customer_name()
-    {
+    public void validate_manager_open_account_with_empty_customer_name() {
         openAccountPage.selectCurrency(BankConstants.CustomerAccountValid.Currency);
         openAccountPage.ClickOnProcessButton();
         openAccountPage.verifyCustomerNameValidationMessage(validationMessage);
     }
 
     @Test
-    public void validate_manager_open_account_without_currency()
-    {
+    public void validate_manager_open_account_without_currency() {
         openAccountPage.selectCustomer(BankConstants.CustomerAccountValid.CustomerName);
         openAccountPage.ClickOnProcessButton();
         openAccountPage.verifyCurrencyValidationMessage(validationMessage);

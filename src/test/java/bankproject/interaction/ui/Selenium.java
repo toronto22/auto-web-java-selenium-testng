@@ -19,9 +19,8 @@ public class Selenium {
     }
 
     public WaitUntil waitUntil(By by) {
-        WaitUntil wait = new WaitUntil(driver, by);
 
-        return wait;
+        return new WaitUntil(driver, by);
     }
 
     public JavaScript javaScript() {
@@ -40,13 +39,13 @@ public class Selenium {
 
     public void sleep(int seconds) {
         try {
-            Thread.sleep(seconds * 1000);
+            Thread.sleep(seconds * 1000L);
         } catch (Exception ignore) {
             //e.printStackTrace();
         }
     }
 
-    public Select select(By by){
+    public Select select(By by) {
         return new Select(driver, by);
     }
 

@@ -9,7 +9,7 @@ import java.net.URL;
 
 import static bankproject.model.DriverPath.FIREFOX_DRIVER_PATH;
 
-public class DriverFirefox implements Driver{
+public class DriverFirefox implements Driver {
     @Override
     public WebDriver init() {
         System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);

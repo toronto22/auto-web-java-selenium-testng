@@ -2,10 +2,10 @@ package bankproject.interaction.data_process;
 
 
 public class DataProcess {
-    public static int extractNumber(String text){
+    public static int extractNumber(String text) {
 
-        text = text.replaceAll("[^0-9]", "");
+        text = text.replaceAll("\\D", "");
 
-        return Integer.valueOf(text);
+        return Integer.parseInt(text);
     }
 }

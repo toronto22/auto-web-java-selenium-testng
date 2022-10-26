@@ -12,7 +12,7 @@ public class CustomerLoginTest extends WebHook {
     CustomerLoginPage customerLoginPage;
     String yourName = BankConstants.CustomerAccountValid.CustomerName;
     String yourNameDefaultValue = "---Your Name---";
-    
+
     @Before
     public void classSetUp() {
         customerLoginPage = new CustomerLoginPage(driver);
@@ -25,8 +25,7 @@ public class CustomerLoginTest extends WebHook {
     }
 
     @Test
-    public void customer_login_hide_login_button_when_deselect_your_name()
-    {
+    public void customer_login_hide_login_button_when_deselect_your_name() {
         customerLoginPage.selectYourName(yourName);
         customerLoginPage.selectYourName(yourNameDefaultValue);
         customerLoginPage.verifyLoginButtonDisplayed(false);

@@ -4,7 +4,7 @@ package bankproject.page_object_model;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static org.hamcrest.MatcherAssert.assertThat; 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import bankproject.model.WebUrl;
@@ -30,13 +30,13 @@ public class CustomerLoginPage extends BasePage {
     public void verifyLoginButtonDisplayed(boolean displayed) {
         boolean isDisplayed = selenium.waitUntil(loginBtn).exist().isDisplayed();
 
-        assertThat(displayed,is(isDisplayed));
+        assertThat(displayed, is(isDisplayed));
     }
 
     public void verifyPageIsActive() {
         boolean isDisplayed = selenium.waitUntil(yourNameSelect).visible().isDisplayed();
 
-        assertThat(isDisplayed,is(true));
+        assertThat(isDisplayed, is(true));
     }
 
     public void selectYourName(String yourName) {

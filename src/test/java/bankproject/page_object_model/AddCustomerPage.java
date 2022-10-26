@@ -3,7 +3,7 @@ package bankproject.page_object_model;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import static org.hamcrest.MatcherAssert.assertThat; 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import bankproject.model.WebUrl;
@@ -34,29 +34,29 @@ public class AddCustomerPage extends BasePage {
     }
 
     public void verifyFirstNameValidationMessage(String message) {
-        String currentmessage = selenium.getValidationMessage(firstNameInput);
+        String currentMessage = selenium.getValidationMessage(firstNameInput);
 
-        assertThat(currentmessage, equalTo(message));
+        assertThat(currentMessage, equalTo(message));
     }
 
     public void verifyLastNameValidationMessage(String message) {
-        String currentmessage = selenium.getValidationMessage(lastNameInput);
+        String currentMessage = selenium.getValidationMessage(lastNameInput);
 
-        assertThat(currentmessage, equalTo(message));
+        assertThat(currentMessage, equalTo(message));
     }
 
     public void verifyPostCodeValidationMessage(String message) {
-        String currentmessage = selenium.getValidationMessage(postCodeInput);
+        String currentMessage = selenium.getValidationMessage(postCodeInput);
 
-        assertThat(currentmessage, equalTo(message));
+        assertThat(currentMessage, equalTo(message));
     }
 
     public void VerifyAlertCustomerIsAddedAndCloseTheAlert() {
-        String addedsuccessfullyMessage = "Customer added successfully with customer id";
+        String addedSuccessfullyMessage = "Customer added successfully with customer id";
         String currentAlertContent = driver.switchTo().alert().getText();
         driver.switchTo().alert().accept();
 
-        assertThat(currentAlertContent,containsString(addedsuccessfullyMessage));
+        assertThat(currentAlertContent, containsString(addedSuccessfullyMessage));
     }
 
 }

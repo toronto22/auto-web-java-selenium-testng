@@ -7,5 +7,6 @@ public interface Driver {
     ConfigurationHelper config = ConfigurationHelper.instance();
 
     WebDriver init();
+
     WebDriver initSeleniumGrid();
 }

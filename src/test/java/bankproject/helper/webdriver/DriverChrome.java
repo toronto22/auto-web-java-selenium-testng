@@ -9,7 +9,7 @@ import java.net.URL;
 
 import static bankproject.model.DriverPath.CHROME_DRIVER_PATH;
 
-public class DriverChrome implements Driver{
+public class DriverChrome implements Driver {
 
     @Override
     public WebDriver init() {

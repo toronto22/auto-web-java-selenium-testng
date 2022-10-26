@@ -9,7 +9,7 @@ public class BasePage {
     protected String url;
     protected Selenium selenium;
 
-    public void goTo(){
+    public void goTo() {
         driver.navigate().to(url);
     }
 }

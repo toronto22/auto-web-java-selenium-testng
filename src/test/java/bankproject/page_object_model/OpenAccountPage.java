@@ -1,6 +1,6 @@
 package bankproject.page_object_model;
 
-import static org.hamcrest.MatcherAssert.assertThat; 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import org.openqa.selenium.By;

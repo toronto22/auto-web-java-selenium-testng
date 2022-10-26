@@ -6,43 +6,36 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 
-public class ConfigurationHelper
-{
+public class ConfigurationHelper {
     public String Browser;
     public Boolean IsHeadless;
     public Boolean IsSeleniumGrid;
     public String GridHubUri;
 
 
-
-    private ConfigurationHelper()
-    {
-        try
-        {
+    private ConfigurationHelper() {
+        try {
 
             Gson gson = new Gson();
 
-            try (FileReader reader = new FileReader("appsettings.json"))
-            {
+            try (FileReader reader = new FileReader("appsettings.json")) {
                 //Read JSON file
                 JsonObject obj = gson.fromJson(reader, JsonObject.class);
                 this.Browser = obj.get("Browser").getAsString();
                 this.IsHeadless = obj.get("IsHeadless").getAsBoolean();
                 this.IsSeleniumGrid = obj.get("IsSeleniumGrid").getAsBoolean();
                 this.GridHubUri = obj.get("GridHubUri").getAsString();
-            } 
-        }
-        catch (Exception e)
-        {
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     private static final Object LOCK = new Object();
 
-    private static ConfigurationHelper cache = null;
+    private static volatile ConfigurationHelper cache = null;
 
-    public static ConfigurationHelper instance()
-    {
+    public static ConfigurationHelper instance() {
         if (cache == null) {
             synchronized (LOCK) {
                 if (cache == null) {
@@ -50,8 +43,8 @@ public class ConfigurationHelper
                 }
             }
         }
-       
-            return cache;
-        
+
+        return cache;
+
     }
 }

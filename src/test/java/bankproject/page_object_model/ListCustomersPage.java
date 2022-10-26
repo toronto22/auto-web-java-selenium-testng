@@ -1,6 +1,6 @@
 package bankproject.page_object_model;
 
-import static org.hamcrest.MatcherAssert.assertThat; 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import java.util.ArrayList;
@@ -26,8 +26,7 @@ public class ListCustomersPage extends BasePage {
 
 
     By deleteCustomerLocator(String accountId) {
-        By deleteBtn = By.xpath("//span[contains(.,'" + accountId + "')]/../..//button");
-        return deleteBtn;
+        return By.xpath("//span[contains(.,'" + accountId + "')]/../..//button");
     }
 
 
@@ -35,21 +34,19 @@ public class ListCustomersPage extends BasePage {
         selenium.waitUntil(searchCustomerInput).visible().sendKeys(value);
     }
 
-    public List<Customer> getCustomerInformation()
-        {
-            List<Customer> result = new ArrayList<Customer>();
-            List<List<String>> items = selenium.table(customerTable).getTableData();
-             for (List<String> item : items)
-             {
-                 String firstName = item.get(0);
-                 String lastName = item.get(1);
-                 String postCode = item.get(2);
-                 List<String> accountNumbers = Arrays.asList(item.get(3).split(" "));;
-                 Customer customer = new Customer(firstName, lastName, postCode, accountNumbers);
-                 result.add(customer);
-             }
-            return result;
+    public List<Customer> getCustomerInformation() {
+        List<Customer> result = new ArrayList<>();
+        List<List<String>> items = selenium.table(customerTable).getTableData();
+        for (List<String> item : items) {
+            String firstName = item.get(0);
+            String lastName = item.get(1);
+            String postCode = item.get(2);
+            List<String> accountNumbers = Arrays.asList(item.get(3).split(" "));
+            Customer customer = new Customer(firstName, lastName, postCode, accountNumbers);
+            result.add(customer);
         }
+        return result;
+    }
 
     public void verifyListCustomerTable(int numberOfItem) {
         int currentNumberOfItem = getCustomerInformation().size();
@@ -60,7 +57,7 @@ public class ListCustomersPage extends BasePage {
     public void verifyCustomerIsExisted(Customer customer) {
         List<Customer> customers = getCustomerInformation();
         boolean isContains = customers.stream().anyMatch(p -> p.FirstName.equals(customer.FirstName) && p.LastName.equals(customer.LastName) && p.PostCode.equals(customer.PostCode));
-        assertThat(isContains,is(true));
+        assertThat(isContains, is(true));
     }
 
     public void deleteCustomer(String accountId) {

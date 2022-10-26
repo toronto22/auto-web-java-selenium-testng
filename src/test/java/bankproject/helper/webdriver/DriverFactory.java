@@ -7,9 +7,9 @@ import java.util.Locale;
 
 public class DriverFactory {
 
-    public static WebDriver generateDriver(String browserName){
+    public static WebDriver generateDriver(String browserName) {
         browserName = browserName.toLowerCase();
-        switch (browserName){
+        switch (browserName) {
             case "chrome":
                 return new DriverChrome().init();
             case "firefox":
@@ -19,9 +19,9 @@ public class DriverFactory {
         }
     }
 
-    public static WebDriver generateGridDriver(String browserName){
+    public static WebDriver generateGridDriver(String browserName) {
         browserName = browserName.toLowerCase();
-        switch (browserName){
+        switch (browserName) {
             case "chrome":
                 return new DriverChrome().initSeleniumGrid();
             case "firefox":

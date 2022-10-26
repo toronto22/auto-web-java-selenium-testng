@@ -1,6 +1,6 @@
 package bankproject.page_object_model;
 
-import static org.hamcrest.MatcherAssert.assertThat; 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class CustomerAccountPage extends CustomerPage {
     By currencyTxt = By.xpath("//*[@ng-hide='noAccount']/strong[3]");
     By transactionBtn = By.xpath("//*[@ng-class='btnClass1']");
     By depositBtn = By.xpath("//*[@ng-class='btnClass2']");
-    By withdrawlBtn = By.xpath("//*[@ng-class='btnClass3']");
+    By withdrawBtn = By.xpath("//*[@ng-class='btnClass3']");
 
     public CustomerAccountPage(WebDriver driver) {
         this.driver = driver;
@@ -37,9 +37,9 @@ public class CustomerAccountPage extends CustomerPage {
         return new DepositPanel(driver);
     }
 
-    public void verifyCutomerHaveAccount(String accountNumber) {
+    public void verifyCustomerHaveAccount(String accountNumber) {
         List<WebElement> accounts = selenium.waitUntil(accountSelect).visible().findElements(By.tagName("option"));
-        List<String> accountNumbers = new ArrayList<String>();
+        List<String> accountNumbers = new ArrayList<>();
         for (WebElement account : accounts) {
             accountNumbers.add(account.getText());
         }
@@ -47,11 +47,11 @@ public class CustomerAccountPage extends CustomerPage {
         assertThat(accountNumbers, hasItem(accountNumber));
     }
 
-    public WithdrawlPanel withdrawl() {
-        selenium.waitUntil(withdrawlBtn).visible().click();
+    public WithdrawPanel withdraw() {
+        selenium.waitUntil(withdrawBtn).visible().click();
         selenium.sleep(2);
 
-        return new WithdrawlPanel(driver);
+        return new WithdrawPanel(driver);
     }
 
     public int getBalance() {
@@ -63,7 +63,7 @@ public class CustomerAccountPage extends CustomerPage {
     public void verifyBalance(int expectedBalance) {
         int currentBalance = getBalance();
 
-        assertThat(currentBalance, is(expectedBalance));       
+        assertThat(currentBalance, is(expectedBalance));
     }
 
     public Account getAccountInformation() {
@@ -72,8 +72,7 @@ public class CustomerAccountPage extends CustomerPage {
         int balance = getBalance();
         String currency = selenium.waitUntil(currencyTxt).visible().getText();
 
-        Account result = new Account(customerName, accountNumber, balance, currency);
-        return result;
+        return new Account(customerName, accountNumber, balance, currency);
     }
 
     public void selectAccount(String accountId) {
@@ -98,7 +97,7 @@ public class CustomerAccountPage extends CustomerPage {
         assertThat(currentAccount, is(samePropertyValuesAs(account)));
     }
 
-    public class DepositPanel extends BasePage {
+    public static class DepositPanel extends BasePage {
         By amountInput = By.xpath("//input[@ng-model='amount']");
         By depositBtn = By.xpath("//form[@name='myForm']/button");
         By errorMessageTxt = By.className("error");
@@ -114,25 +113,25 @@ public class CustomerAccountPage extends CustomerPage {
         }
 
         public void verifyMessage(String expectedMessage) {
-            String currentmessage = selenium.waitUntil(errorMessageTxt).visible().getText();
+            String currentMessage = selenium.waitUntil(errorMessageTxt).visible().getText();
 
-            assertThat(currentmessage, is(expectedMessage));
+            assertThat(currentMessage, is(expectedMessage));
         }
     }
 
-    public class WithdrawlPanel extends BasePage {
+    public static class WithdrawPanel extends BasePage {
         By amountInput = By.xpath("//input[@ng-model='amount']");
-        By withdrawlBtn = By.xpath("//form[@name='myForm']/button");
+        By withdrawBtn = By.xpath("//form[@name='myForm']/button");
         By errorMessageTxt = By.className("error");
 
-        public WithdrawlPanel(WebDriver driver) {
+        public WithdrawPanel(WebDriver driver) {
             this.driver = driver;
             this.selenium = Selenium.Init(driver);
         }
 
         public void withAmount(int amount) {
             selenium.waitUntil(amountInput).visible().sendKeys(String.valueOf(amount));
-            selenium.waitUntil(withdrawlBtn).visible().click();
+            selenium.waitUntil(withdrawBtn).visible().click();
         }
 
         public void verifyMessage(String expectedErrorMessage) {

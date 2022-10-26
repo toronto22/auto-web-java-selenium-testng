@@ -1,7 +1,7 @@
 package bankproject.model;
 
 public class WebUrl {
-    private static String BasePage = "https://www.globalsqa.com/angularJs-protractor";
+    private static final String BasePage = "https://www.globalsqa.com/angularJs-protractor";
     public static String Home = BasePage + "/BankingProject/#/login";
     public static String CustomerLogin = BasePage + "/BankingProject/#/customer";
     public static String CustomerAccount = BasePage + "/BankingProject/#/account";

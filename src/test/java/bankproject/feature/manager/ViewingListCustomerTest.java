@@ -18,22 +18,19 @@ public class ViewingListCustomerTest extends WebHook {
     int numberOfItem = 5;
 
     @Before
-    public void classSetUp()
-    {
+    public void classSetUp() {
         listCustomersPage = new ListCustomersPage(driver);
         listCustomersPage.goTo();
     }
 
     @Test
-    public void manager_view_list_customer_table()
-    {
+    public void manager_view_list_customer_table() {
         listCustomersPage.goTo();
         listCustomersPage.verifyListCustomerTable(numberOfItem);
     }
 
     @Test
-    public void manager_create_new_customer()
-    {
+    public void manager_create_new_customer() {
         Customer customer = new Customer("W33", "Haa", "1234");
 
         AddCustomerPage addCustomerPage = new AddCustomerPage(driver);
