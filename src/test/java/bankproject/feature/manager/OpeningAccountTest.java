@@ -1,4 +1,4 @@
-package bankproject.feature;
+package bankproject.feature.manager;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import bankproject.page_object_model.CustomerLoginPage;
 import bankproject.page_object_model.HomePage;
 import bankproject.page_object_model.OpenAccountPage;
 
-public class OpenAccountTest extends WebHook {
+public class OpeningAccountTest extends WebHook {
     OpenAccountPage openAccountPage;
 
     String validationMessage = "Please select an item in the list.";
@@ -23,7 +23,7 @@ public class OpenAccountTest extends WebHook {
     }
 
     @Test
-    public void should_be_able_to_create_new_account() {
+    public void manager_open_account_for_the_customer() {
         openAccountPage.openAccount(BankConstants.CustomerAccountValid.CustomerName, BankConstants.CustomerAccountValid.Currency);
         String newAccountNumber = openAccountPage.getAccountNumberIsCreatedInAlert();
         openAccountPage.verifyAccountIsOpenedAndCloseAlert();
@@ -37,7 +37,7 @@ public class OpenAccountTest extends WebHook {
 
 
     @Test
-    public void should_verify_the_not_selected_customer_name()
+    public void validate_manager_open_account_with_empty_customer_name()
     {
         openAccountPage.selectCurrency(BankConstants.CustomerAccountValid.Currency);
         openAccountPage.ClickOnProcessButton();
@@ -45,7 +45,7 @@ public class OpenAccountTest extends WebHook {
     }
 
     @Test
-    public void should_verify_the_not_selected_currency()
+    public void validate_manager_open_account_without_currency()
     {
         openAccountPage.selectCustomer(BankConstants.CustomerAccountValid.CustomerName);
         openAccountPage.ClickOnProcessButton();

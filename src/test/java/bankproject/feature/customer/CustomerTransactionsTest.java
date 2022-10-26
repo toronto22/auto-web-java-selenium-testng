@@ -1,4 +1,4 @@
-package bankproject.feature;
+package bankproject.feature.customer;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,14 +23,13 @@ public class CustomerTransactionsTest extends WebHook {
         @Before
         public void classSetUp()
         {
-       
             CustomerLoginPage customerLoginPage = new CustomerLoginPage(driver);
             customerLoginPage.goTo();
             customerAccountPage = customerLoginPage.login(BankConstants.CustomerAccountValid.CustomerName);
         }
 
         @Test
-        public void should_be_able_to_deposit_money()
+        public void customer_deposit_money_with_valid_amount()
         {
             int currentBalance = customerAccountPage.getBalance();
             customerAccountPage.deposit().withAmount(amount);
@@ -44,7 +43,7 @@ public class CustomerTransactionsTest extends WebHook {
         }
 
         @Test
-        public void should_verify_the_money_withdraw_exceed_the_balance() {
+        public void validate_customer_withdraw_the_money_that_exceed_the_balance() {
             customerAccountPage.deposit().withAmount(amount);
 
             int currentBalance = customerAccountPage.getBalance();
@@ -56,7 +55,7 @@ public class CustomerTransactionsTest extends WebHook {
         }
 
         @Test
-        public void should_be_able_to_withdraw_money() {
+        public void customer_withdraw_money_with_valid_amount() {
             customerAccountPage.deposit().withAmount(amount);
             int currentBalance = customerAccountPage.getBalance();
 
@@ -69,7 +68,7 @@ public class CustomerTransactionsTest extends WebHook {
         }
 
         @Test
-        public void should_be_able_to_reset_customer_transactions() {
+        public void customer_reset_the_customer_transactions() {
             customerAccountPage.deposit().withAmount(amount);
             customerAccountPage.deposit().withAmount(amount);
             CustomerTransactionsPage transactionPage = customerAccountPage.transactions();

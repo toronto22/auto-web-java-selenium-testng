@@ -1,4 +1,4 @@
-package bankproject.feature;
+package bankproject.feature.customer;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import bankproject.model.Account;
 import bankproject.page_object_model.CustomerAccountPage;
 import bankproject.page_object_model.CustomerLoginPage;
 
-public class CustomerAccountTest extends WebHook {
+public class ViewingCustomerAccountTest extends WebHook {
     CustomerAccountPage customerAccountPage;
     Account account;
 
@@ -22,12 +22,12 @@ public class CustomerAccountTest extends WebHook {
     }
 
     @Test
-    public void should_see_the_customer_account_information_details() {
+    public void customer_view_account_information_details() {
         customerAccountPage.verifyTheCustomerInformation(account);
     }
 
     @Test
-    public void should_see_the_other_customer_account_information_details() {
+    public void customer_the_other_account_information_details() {
         customerAccountPage.selectAccount(BankConstants.CustomerAccountValidOther.AccountNumber);
         customerAccountPage.verifyTheCustomerInformation(BankConstants.CustomerAccountValidOther);
     }

@@ -1,4 +1,4 @@
-package bankproject.feature;
+package bankproject.feature.manager;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ import bankproject.page_object_model.AddCustomerPage;
 import bankproject.page_object_model.ListCustomersPage;
 import bankproject.page_object_model.OpenAccountPage;
 
-public class ListCustomerTest extends WebHook {
+public class ViewingListCustomerTest extends WebHook {
     ListCustomersPage listCustomersPage;
 
     int numberOfItem = 5;
@@ -25,14 +25,14 @@ public class ListCustomerTest extends WebHook {
     }
 
     @Test
-    public void should_see_list_customer_table()
+    public void manager_view_list_customer_table()
     {
         listCustomersPage.goTo();
         listCustomersPage.verifyListCustomerTable(numberOfItem);
     }
 
     @Test
-    public void should_show_the_customer_that_is_created()
+    public void manager_create_new_customer()
     {
         Customer customer = new Customer("W33", "Haa", "1234");
 
@@ -58,7 +58,7 @@ public class ListCustomerTest extends WebHook {
     }
 
     @Test
-    public void should_be_able_to_delete_customer_in_the_table() {
+    public void manager_delete_the_customer() {
 
         Customer customer = new Customer("W33", "Haa", "1234");
 

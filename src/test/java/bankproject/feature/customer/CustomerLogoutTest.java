@@ -1,4 +1,4 @@
-package bankproject.feature;
+package bankproject.feature.customer;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ public class CustomerLogoutTest extends WebHook {
     }
 
     @Test
-    public void should_able_to_log_out_from_account_page() {
+    public void customer_log_out_successfully_from_account_page() {
         CustomerAccountPage customerAccountPage = new CustomerAccountPage(driver);
         customerAccountPage.goTo();
         customerAccountPage.logout();
@@ -28,7 +28,7 @@ public class CustomerLogoutTest extends WebHook {
     }
 
     @Test
-    public void should_able_to_log_out_from_transaction_page() {
+    public void customer_log_out_successfully_from_transaction_page() {
         CustomerTransactionsPage customerTransactionPage = new CustomerTransactionsPage(driver);
         customerTransactionPage.goTo();
         customerTransactionPage.logout();

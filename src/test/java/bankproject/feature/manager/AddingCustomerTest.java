@@ -1,4 +1,4 @@
-package bankproject.feature;
+package bankproject.feature.manager;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,7 +8,7 @@ import bankproject.page_object_model.AddCustomerPage;
 import bankproject.page_object_model.CustomerLoginPage;
 import bankproject.page_object_model.ManagerPage;
 
-public class AddCustomerTest extends WebHook {
+public class AddingCustomerTest extends WebHook {
     AddCustomerPage addCustomerPage;
 
     String errorMessage = "Please fill out this field.";
@@ -21,7 +21,7 @@ public class AddCustomerTest extends WebHook {
     }
 
     @Test
-    public void should_be_able_to_add_customer() {
+    public void manager_add_customer_with_valid_customer_information() {
         String firstName = "W33";
         String lastName = "Haa";
         String postCode = "123";
@@ -35,7 +35,7 @@ public class AddCustomerTest extends WebHook {
     }
 
     @Test
-    public void should_be_able_to_validate_first_name_is_empty() {
+    public void validate_manager_add_customer_with_the_empty_first_name() {
         String firstName = "";
         String lastName = "Haa";
         String postCode = "123";
@@ -44,7 +44,7 @@ public class AddCustomerTest extends WebHook {
     }
 
     @Test
-    public void should_be_able_to_validate_last_name_is_empty() {
+    public void validate_manager_add_customer_with_the_empty_last_name() {
         String firstName = "W33";
         String lastName = "";
         String postCode = "123";
@@ -53,7 +53,7 @@ public class AddCustomerTest extends WebHook {
     }
 
     @Test
-    public void able_to_validate_post_code_is_empty() {
+    public void validate_manager_add_customer_with_the_empty_post_code() {
         String firstName = "W33";
         String lastName = "Haa";
         String postCode = "";

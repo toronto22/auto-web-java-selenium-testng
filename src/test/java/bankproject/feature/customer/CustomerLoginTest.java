@@ -1,4 +1,4 @@
-package bankproject.feature;
+package bankproject.feature.customer;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,12 +20,12 @@ public class CustomerLoginTest extends WebHook {
     }
 
     @Test
-    public void should_not_see_the_login_button_in_default() {
+    public void customer_login_hide_the_login_button_in_default() {
         customerLoginPage.verifyLoginButtonDisplayed(false);
     }
 
     @Test
-    public void login_button_should_disappear_when_deselect_your_name()
+    public void customer_login_hide_login_button_when_deselect_your_name()
     {
         customerLoginPage.selectYourName(yourName);
         customerLoginPage.selectYourName(yourNameDefaultValue);
@@ -33,13 +33,13 @@ public class CustomerLoginTest extends WebHook {
     }
 
     @Test
-    public void should_see_the_login_button_when_select_your_name() {
+    public void customer_login_show_the_login_button_when_select_your_name() {
         customerLoginPage.selectYourName(yourName);
         customerLoginPage.verifyLoginButtonDisplayed(true);
     }
 
     @Test
-    public void should_able_to_login_successfully() {
+    public void login_successfully_with_valid_credential() {
         CustomerAccountPage customerAccountPage = customerLoginPage.login(yourName);
         customerAccountPage.verifyTheCustomerIsLoggedIn(yourName);
     }
