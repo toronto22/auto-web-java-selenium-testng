@@ -1,18 +1,17 @@
 package bankproject.page_object_model;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import bankproject.interaction.ui.Selenium;
+import bankproject.model.Customer;
+import bankproject.model.WebUrl;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-
-import bankproject.model.WebUrl;
-import bankproject.model.Customer;
-import bankproject.interaction.ui.Selenium;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 public class ListCustomersPage extends BasePage {
     By searchCustomerInput = By.xpath("//intpu[@ng-model='searchCustomer']");

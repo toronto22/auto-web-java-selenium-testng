@@ -1,13 +1,12 @@
 package bankproject.feature.customer;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import bankproject.model.BankConstants;
 import bankproject.WebHook;
 import bankproject.model.Account;
+import bankproject.model.BankConstants;
 import bankproject.page_object_model.CustomerAccountPage;
 import bankproject.page_object_model.CustomerLoginPage;
+import org.junit.Before;
+import org.junit.Test;
 
 public class ViewingCustomerAccountTest extends WebHook {
     CustomerAccountPage customerAccountPage;

@@ -1,9 +1,6 @@
 package bankproject.helper.webdriver;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-
-import java.util.Locale;
 
 public class DriverFactory {
 

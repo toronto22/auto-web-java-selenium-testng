@@ -1,18 +1,19 @@
 package bankproject.page_object_model;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import bankproject.interaction.ui.Selenium;
+import bankproject.model.Account;
+import bankproject.model.WebUrl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import bankproject.model.WebUrl;
-import bankproject.model.Account;
-import bankproject.interaction.ui.Selenium;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.samePropertyValuesAs;
 
 public class CustomerAccountPage extends CustomerPage {
     By customerNameTxt = By.className("fontBig");

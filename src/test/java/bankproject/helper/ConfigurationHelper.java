@@ -1,17 +1,18 @@
 package bankproject.helper;
 
-import java.io.FileReader;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import java.io.FileReader;
+
 
 public class ConfigurationHelper {
+    private static final Object LOCK = new Object();
+    private static volatile ConfigurationHelper cache = null;
     public String Browser;
     public Boolean IsHeadless;
     public Boolean IsSeleniumGrid;
     public String GridHubUri;
-
 
     private ConfigurationHelper() {
         try {
@@ -30,10 +31,6 @@ public class ConfigurationHelper {
             e.printStackTrace();
         }
     }
-
-    private static final Object LOCK = new Object();
-
-    private static volatile ConfigurationHelper cache = null;
 
     public static ConfigurationHelper instance() {
         if (cache == null) {

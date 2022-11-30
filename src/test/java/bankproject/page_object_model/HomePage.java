@@ -1,10 +1,9 @@
 package bankproject.page_object_model;
 
+import bankproject.interaction.ui.Selenium;
+import bankproject.model.WebUrl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-import bankproject.model.WebUrl;
-import bankproject.interaction.ui.Selenium;
 
 public class HomePage extends BasePage {
     By customerLoginBtn = By.xpath("//button[text()='Customer Login']");

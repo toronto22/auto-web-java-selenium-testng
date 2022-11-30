@@ -1,16 +1,15 @@
 package bankproject.feature.manager;
 
-import java.util.ArrayList;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import bankproject.model.BankConstants;
 import bankproject.WebHook;
+import bankproject.model.BankConstants;
 import bankproject.model.Customer;
 import bankproject.page_object_model.AddCustomerPage;
 import bankproject.page_object_model.ListCustomersPage;
 import bankproject.page_object_model.OpenAccountPage;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
 
 public class ViewingListCustomerTest extends WebHook {
     ListCustomersPage listCustomersPage;

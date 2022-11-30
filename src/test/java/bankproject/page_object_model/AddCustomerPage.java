@@ -1,14 +1,14 @@
 package bankproject.page_object_model;
 
+import bankproject.interaction.ui.Selenium;
+import bankproject.model.Customer;
+import bankproject.model.WebUrl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-
-import bankproject.model.WebUrl;
-import bankproject.model.Customer;
-import bankproject.interaction.ui.Selenium;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
 
 public class AddCustomerPage extends BasePage {
     By firstNameInput = By.xpath("//input[@ng-model='fName']");

@@ -1,12 +1,11 @@
 package bankproject.feature.manager;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import bankproject.WebHook;
 import bankproject.page_object_model.AddCustomerPage;
 import bankproject.page_object_model.CustomerLoginPage;
 import bankproject.page_object_model.ManagerPage;
+import org.junit.Before;
+import org.junit.Test;
 
 public class AddingCustomerTest extends WebHook {
     AddCustomerPage addCustomerPage;

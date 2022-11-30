@@ -1,8 +1,7 @@
 package bankproject.page_object_model;
 
-import org.openqa.selenium.WebDriver;
-
 import bankproject.interaction.ui.Selenium;
+import org.openqa.selenium.WebDriver;
 
 public class BasePage {
     protected WebDriver driver;

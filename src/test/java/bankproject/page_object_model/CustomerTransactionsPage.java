@@ -1,17 +1,17 @@
 package bankproject.page_object_model;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import bankproject.interaction.ui.Selenium;
+import bankproject.model.CustomerTransaction;
+import bankproject.model.WebUrl;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-
-import bankproject.model.WebUrl;
-import bankproject.model.CustomerTransaction;
-import bankproject.interaction.ui.Selenium;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.is;
 
 public class CustomerTransactionsPage extends CustomerPage {
     By backBtn = By.xpath("//button[text()='Back']");

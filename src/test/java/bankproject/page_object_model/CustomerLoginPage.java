@@ -1,14 +1,13 @@
 package bankproject.page_object_model;
 
 
+import bankproject.interaction.ui.Selenium;
+import bankproject.model.WebUrl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-
-import bankproject.model.WebUrl;
-import bankproject.interaction.ui.Selenium;
+import static org.hamcrest.Matchers.is;
 
 public class CustomerLoginPage extends BasePage {
     By yourNameSelect = By.id("userSelect");
