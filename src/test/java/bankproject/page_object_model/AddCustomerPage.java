@@ -1,8 +1,9 @@
 package bankproject.page_object_model;
 
-import bankproject.interaction.ui.Selenium;
+import bankproject.helper.interaction.ui.Selenium;
 import bankproject.model.Customer;
 import bankproject.model.WebUrl;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -22,6 +23,7 @@ public class AddCustomerPage extends BasePage {
         this.selenium = Selenium.Init(driver);
     }
 
+    @Step("Add customer")
     public void addCustomer(String firstName, String lastName, String postCode) {
         selenium.waitUntil(firstNameInput).visible().sendKeys(firstName);
         selenium.waitUntil(lastNameInput).visible().sendKeys(lastName);
@@ -29,28 +31,33 @@ public class AddCustomerPage extends BasePage {
         selenium.waitUntil(submitBtn).visible().click();
     }
 
+    @Step("Add customer")
     public void addCustomer(Customer customer) {
         addCustomer(customer.FirstName, customer.LastName, customer.PostCode);
     }
 
+    @Step("Verify validation message of first name")
     public void verifyFirstNameValidationMessage(String message) {
         String currentMessage = selenium.getValidationMessage(firstNameInput);
 
         assertThat(currentMessage, equalTo(message));
     }
 
+    @Step("Verify validation message of last name")
     public void verifyLastNameValidationMessage(String message) {
         String currentMessage = selenium.getValidationMessage(lastNameInput);
 
         assertThat(currentMessage, equalTo(message));
     }
 
+    @Step("Verify validation message of post code")
     public void verifyPostCodeValidationMessage(String message) {
         String currentMessage = selenium.getValidationMessage(postCodeInput);
 
         assertThat(currentMessage, equalTo(message));
     }
 
+    @Step("Verify Alert Customer is added and close the alert")
     public void VerifyAlertCustomerIsAddedAndCloseTheAlert() {
         String addedSuccessfullyMessage = "Customer added successfully with customer id";
         String currentAlertContent = driver.switchTo().alert().getText();

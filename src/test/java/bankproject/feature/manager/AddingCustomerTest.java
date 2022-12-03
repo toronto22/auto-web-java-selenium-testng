@@ -4,9 +4,15 @@ import bankproject.WebHook;
 import bankproject.page_object_model.AddCustomerPage;
 import bankproject.page_object_model.CustomerLoginPage;
 import bankproject.page_object_model.ManagerPage;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
 import org.junit.Test;
 
+@Feature("Adding Customer Tests")
+@DisplayName("Adding Customer Tests")
 public class AddingCustomerTest extends WebHook {
     AddCustomerPage addCustomerPage;
 
@@ -16,11 +22,13 @@ public class AddingCustomerTest extends WebHook {
     public void classSetUp() {
         ManagerPage managerPage = new ManagerPage(driver);
         managerPage.goTo();
-        addCustomerPage = managerPage.goToAddCustomer();
+        addCustomerPage = managerPage.goToAddCustomerPage();
     }
 
     @Test
-    public void manager_add_customer_with_valid_customer_information() {
+    @Severity(SeverityLevel.CRITICAL)
+    @DisplayName("Manager adds customer with valid customer information")
+    public void managerAddsCustomerWithValidCustomerInformation() {
         String firstName = "W33";
         String lastName = "Haa";
         String postCode = "123";
@@ -34,7 +42,9 @@ public class AddingCustomerTest extends WebHook {
     }
 
     @Test
-    public void validate_manager_add_customer_with_the_empty_first_name() {
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Manager is unable to add customer with the empty first_name")
+    public void managerIsUnableToAddCustomerWithTheEmptyFirstName() {
         String firstName = "";
         String lastName = "Haa";
         String postCode = "123";
@@ -43,7 +53,9 @@ public class AddingCustomerTest extends WebHook {
     }
 
     @Test
-    public void validate_manager_add_customer_with_the_empty_last_name() {
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Manager is unable to add customer with the empty last name")
+    public void managerIsUnableToAddCustomerWithTheEmptyLastName() {
         String firstName = "W33";
         String lastName = "";
         String postCode = "123";
@@ -52,7 +64,9 @@ public class AddingCustomerTest extends WebHook {
     }
 
     @Test
-    public void validate_manager_add_customer_with_the_empty_post_code() {
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Manager is unable to add customer with the empty post code")
+    public void managerIsUnableToAddCustomerWithTheEmptyPostCode() {
         String firstName = "W33";
         String lastName = "Haa";
         String postCode = "";

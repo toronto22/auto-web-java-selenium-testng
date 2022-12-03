@@ -1,7 +1,8 @@
 package bankproject.page_object_model;
 
-import bankproject.interaction.ui.Selenium;
+import bankproject.helper.interaction.ui.Selenium;
 import bankproject.model.WebUrl;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -19,24 +20,16 @@ public class ManagerPage extends BasePage {
         selenium = Selenium.Init(driver);
     }
 
+    @Step("Verify page is active")
     public void verifyPageIsActive() {
         boolean isDisplayed = selenium.waitUntil(addCustomerBtn).visible().isDisplayed();
 
         assertThat(isDisplayed, is(true));
     }
 
-    public AddCustomerPage goToAddCustomer() {
+    @Step("Go to add customer page")
+    public AddCustomerPage goToAddCustomerPage() {
         selenium.waitUntil(addCustomerBtn).visible().click();
         return new AddCustomerPage(driver);
-    }
-
-    public OpenAccountPage goToOpenAccount() {
-        selenium.waitUntil(openAccountBtn).visible().click();
-        return new OpenAccountPage(driver);
-    }
-
-    public ListCustomersPage goToCustomers() {
-        selenium.waitUntil(CustomersBtn).visible().click();
-        return new ListCustomersPage(driver);
     }
 }

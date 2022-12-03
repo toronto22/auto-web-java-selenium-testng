@@ -5,9 +5,15 @@ import bankproject.model.Account;
 import bankproject.model.BankConstants;
 import bankproject.page_object_model.CustomerAccountPage;
 import bankproject.page_object_model.CustomerLoginPage;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
 import org.junit.Test;
 
+@Feature("Viewing Customer Account Tests")
+@DisplayName("Viewing Customer Account Tests")
 public class ViewingCustomerAccountTest extends WebHook {
     CustomerAccountPage customerAccountPage;
     Account account;
@@ -21,12 +27,16 @@ public class ViewingCustomerAccountTest extends WebHook {
     }
 
     @Test
-    public void customer_view_account_information_details() {
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Customer view account information details")
+    public void customerViewsAccountInformationDetails() {
         customerAccountPage.verifyTheCustomerInformation(account);
     }
 
     @Test
-    public void customer_the_other_account_information_details() {
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Customer views the other account information details")
+    public void customerViewsTheOtherAccountInformationDetails() {
         customerAccountPage.selectAccount(BankConstants.CustomerAccountValidOther.AccountNumber);
         customerAccountPage.verifyTheCustomerInformation(BankConstants.CustomerAccountValidOther);
     }

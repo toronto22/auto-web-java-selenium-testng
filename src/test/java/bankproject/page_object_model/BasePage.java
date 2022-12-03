@@ -1,6 +1,6 @@
 package bankproject.page_object_model;
 
-import bankproject.interaction.ui.Selenium;
+import bankproject.helper.interaction.ui.Selenium;
 import org.openqa.selenium.WebDriver;
 
 public class BasePage {

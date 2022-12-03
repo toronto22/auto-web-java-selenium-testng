@@ -1,8 +1,9 @@
 package bankproject.page_object_model;
 
-import bankproject.interaction.ui.Selenium;
+import bankproject.helper.interaction.ui.Selenium;
 import bankproject.model.Account;
 import bankproject.model.WebUrl;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,13 +32,14 @@ public class CustomerAccountPage extends CustomerPage {
         this.selenium = Selenium.Init(driver);
     }
 
-    public DepositPanel deposit() {
+    public DepositPanel depositMoney() {
         selenium.waitUntil(depositBtn).visible().click();
         selenium.sleep(2);
 
         return new DepositPanel(driver);
     }
 
+    @Step("Verify customer have account")
     public void verifyCustomerHaveAccount(String accountNumber) {
         List<WebElement> accounts = selenium.waitUntil(accountSelect).visible().findElements(By.tagName("option"));
         List<String> accountNumbers = new ArrayList<>();
@@ -55,18 +57,21 @@ public class CustomerAccountPage extends CustomerPage {
         return new WithdrawPanel(driver);
     }
 
+    @Step("Get balance")
     public int getBalance() {
         String balance = selenium.waitUntil(balanceTxt).visible().getText();
 
         return Integer.parseInt(balance);
     }
 
+    @Step("Verify balance")
     public void verifyBalance(int expectedBalance) {
         int currentBalance = getBalance();
 
         assertThat(currentBalance, is(expectedBalance));
     }
 
+    @Step("Get account information")
     public Account getAccountInformation() {
         String customerName = selenium.waitUntil(customerNameTxt).visible().getText();
         String accountNumber = selenium.waitUntil(accountNumberTxt).visible().getText();
@@ -76,6 +81,7 @@ public class CustomerAccountPage extends CustomerPage {
         return new Account(customerName, accountNumber, balance, currency);
     }
 
+    @Step("Select account")
     public void selectAccount(String accountId) {
         selenium.select(accountSelect).byText(accountId);
     }
@@ -86,12 +92,14 @@ public class CustomerAccountPage extends CustomerPage {
         return new CustomerTransactionsPage(driver);
     }
 
+    @Step("Verify the customer is logged in")
     public void verifyTheCustomerIsLoggedIn(String customerName) {
         String userName = selenium.waitUntil(customerNameTxt).visible().getText();
 
         assertThat(userName, is(customerName));
     }
 
+    @Step("Verify the customer information")
     public void verifyTheCustomerInformation(Account account) {
         Account currentAccount = getAccountInformation();
 
@@ -108,11 +116,13 @@ public class CustomerAccountPage extends CustomerPage {
             this.selenium = Selenium.Init(driver);
         }
 
+        @Step("Deposit with amount")
         public void withAmount(int amount) {
             selenium.waitUntil(amountInput).visible().sendKeys(String.valueOf(amount));
             selenium.waitUntil(depositBtn).visible().click();
         }
 
+        @Step("Verify deposit message")
         public void verifyMessage(String expectedMessage) {
             String currentMessage = selenium.waitUntil(errorMessageTxt).visible().getText();
 
@@ -130,11 +140,13 @@ public class CustomerAccountPage extends CustomerPage {
             this.selenium = Selenium.Init(driver);
         }
 
+        @Step("Withdraw with amount")
         public void withAmount(int amount) {
             selenium.waitUntil(amountInput).visible().sendKeys(String.valueOf(amount));
             selenium.waitUntil(withdrawBtn).visible().click();
         }
 
+        @Step("Verify withdraw message")
         public void verifyMessage(String expectedErrorMessage) {
             String currentErrorMessage = selenium.waitUntil(errorMessageTxt).visible().getText();
 

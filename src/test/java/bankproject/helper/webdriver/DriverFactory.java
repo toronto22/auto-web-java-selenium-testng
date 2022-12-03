@@ -1,30 +1,20 @@
 package bankproject.helper.webdriver;
 
+import bankproject.helper.webdriver.localdriver.LocalDriverFactory;
+import bankproject.helper.webdriver.remotedriver.RemoteDriverFactory;
 import org.openqa.selenium.WebDriver;
 
 public class DriverFactory {
+    public static WebDriver generateDriver(String browserName, boolean isGrid) {
+        DriverGenerator driverFactory;
 
-    public static WebDriver generateDriver(String browserName) {
-        browserName = browserName.toLowerCase();
-        switch (browserName) {
-            case "chrome":
-                return new DriverChrome().init();
-            case "firefox":
-                return new DriverFirefox().init();
-            default:
-                return null;
+        if (isGrid) {
+            driverFactory = new LocalDriverFactory();
+        } else {
+            driverFactory = new RemoteDriverFactory();
         }
+
+        return driverFactory.generateDriver(browserName);
     }
 
-    public static WebDriver generateGridDriver(String browserName) {
-        browserName = browserName.toLowerCase();
-        switch (browserName) {
-            case "chrome":
-                return new DriverChrome().initSeleniumGrid();
-            case "firefox":
-                return new DriverFirefox().initSeleniumGrid();
-            default:
-                return null;
-        }
-    }
 }

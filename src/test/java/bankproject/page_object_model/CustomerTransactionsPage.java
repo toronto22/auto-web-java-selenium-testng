@@ -1,8 +1,9 @@
 package bankproject.page_object_model;
 
-import bankproject.interaction.ui.Selenium;
+import bankproject.helper.interaction.ui.Selenium;
 import bankproject.model.CustomerTransaction;
 import bankproject.model.WebUrl;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -26,22 +27,26 @@ public class CustomerTransactionsPage extends CustomerPage {
         selenium = Selenium.Init(driver);
     }
 
+    @Step("Verify customer transaction page is active")
     public void verifyPageIsActive() {
         boolean isDisplayed = selenium.waitUntil(transactionTable).visible().isDisplayed();
 
         assertThat(isDisplayed, is(true));
     }
 
+    @Step("Back to customer account page")
     public CustomerAccountPage backToCustomerAccountPage() {
         selenium.waitUntil(backBtn).visible().click();
 
         return new CustomerAccountPage(driver);
     }
 
+    @Step("Reset")
     public void reset() {
         selenium.waitUntil(resetBtn).visible().click();
     }
 
+    @Step("Select date")
     public void selectDate(String startDate, String endDate) {
         selenium.waitUntil(startDatePicker).visible().clear();
         selenium.waitUntil(startDatePicker).visible().sendKeys(startDate);
@@ -49,12 +54,14 @@ public class CustomerTransactionsPage extends CustomerPage {
         selenium.waitUntil(endDatePicker).visible().sendKeys(endDate);
     }
 
+    @Step("Verify information")
     public void verifyInformation(CustomerTransaction customerTransaction) {
         List<CustomerTransaction> transactions = getTransactionInformation();
 
         assertThat(transactions, hasItem(customerTransaction));
     }
 
+    @Step("Get transaction information")
     public List<CustomerTransaction> getTransactionInformation() {
         List<CustomerTransaction> transactions = new ArrayList<>();
         List<List<String>> data = selenium.table(transactionTable).getTableData();
@@ -70,13 +77,15 @@ public class CustomerTransactionsPage extends CustomerPage {
         return transactions;
     }
 
+    @Step("Verify number of transaction")
     public void verifyNumberOfTransactions(int expectedNumber) {
         int numberOfTransaction = getTransactionInformation().size();
 
         assertThat(expectedNumber, is(numberOfTransaction));
     }
 
-    public void VerifyLastCustomerTransaction(int amount, String type) {
+    @Step("Verify last customer transaction")
+    public void verifyLastCustomerTransaction(int amount, String type) {
         List<CustomerTransaction> transactions = getTransactionInformation();
         CustomerTransaction lastTransaction = transactions.get(transactions.size() - 1);
 

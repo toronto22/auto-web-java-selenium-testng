@@ -5,9 +5,16 @@ import bankproject.model.BankConstants;
 import bankproject.page_object_model.CustomerAccountPage;
 import bankproject.page_object_model.CustomerLoginPage;
 import bankproject.page_object_model.CustomerTransactionsPage;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
 import org.junit.Test;
 
+@Feature("Customer Transactions Tests")
+@DisplayName("Customer Transactions Tests")
 public class CustomerTransactionsTest extends WebHook {
     CustomerAccountPage customerAccountPage;
 
@@ -27,23 +34,28 @@ public class CustomerTransactionsTest extends WebHook {
     }
 
     @Test
-    public void customer_deposit_money_with_valid_amount() {
+    @Severity(SeverityLevel.CRITICAL)
+    @DisplayName("Customer deposits money with valid amount")
+    public void customerDepositsMoneyWithValidAmount() {
         int currentBalance = customerAccountPage.getBalance();
-        customerAccountPage.deposit().withAmount(amount);
+        customerAccountPage.depositMoney().withAmount(amount);
 
         int expectedBalance = currentBalance + amount;
 
-        customerAccountPage.deposit().verifyMessage(messageDepositSuccessfully);
+        customerAccountPage.depositMoney().verifyMessage(messageDepositSuccessfully);
         customerAccountPage.verifyBalance(expectedBalance);
 
-        customerAccountPage.transactions().VerifyLastCustomerTransaction(amount, depositType);
+        customerAccountPage.transactions().verifyLastCustomerTransaction(amount, depositType);
     }
 
     @Test
-    public void validate_customer_withdraw_the_money_that_exceed_the_balance() {
-        customerAccountPage.deposit().withAmount(amount);
+    @Severity(SeverityLevel.CRITICAL)
+    @DisplayName("Customer is unable to withdraw the money that exceed the balance")
+    public void customerIsUnableToWithdrawTheMoneyThatExceedTheBalance() {
+        customerAccountPage.depositMoney().withAmount(amount);
 
         int currentBalance = customerAccountPage.getBalance();
+
         int exceedBalanceLimitNumber = currentBalance + 1;
         customerAccountPage.withdraw().withAmount(exceedBalanceLimitNumber);
 
@@ -52,8 +64,10 @@ public class CustomerTransactionsTest extends WebHook {
     }
 
     @Test
-    public void customer_withdraw_money_with_valid_amount() {
-        customerAccountPage.deposit().withAmount(amount);
+    @Severity(SeverityLevel.CRITICAL)
+    @DisplayName("Customer withdraws money with valid amount")
+    public void customerWithdrawsMoneyWithValidAmount() {
+        customerAccountPage.depositMoney().withAmount(amount);
         int currentBalance = customerAccountPage.getBalance();
 
         customerAccountPage.withdraw().withAmount(amount);
@@ -61,13 +75,16 @@ public class CustomerTransactionsTest extends WebHook {
 
         customerAccountPage.withdraw().verifyMessage(messageWithdrawSuccessfully);
         customerAccountPage.verifyBalance(expectedBalance);
-        customerAccountPage.transactions().VerifyLastCustomerTransaction(amount, withdrawType);
+        customerAccountPage.transactions().verifyLastCustomerTransaction(amount, withdrawType);
     }
 
     @Test
-    public void customer_reset_the_customer_transactions() {
-        customerAccountPage.deposit().withAmount(amount);
-        customerAccountPage.deposit().withAmount(amount);
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Customer resets the customer transactions")
+    @Description("Customer is able to remove all of the their transactions")
+    public void customerResetsTheCustomerTransactions() {
+        customerAccountPage.depositMoney().withAmount(amount);
+        customerAccountPage.depositMoney().withAmount(amount);
         CustomerTransactionsPage transactionPage = customerAccountPage.transactions();
         transactionPage.reset();
         transactionPage.verifyNumberOfTransactions(0);

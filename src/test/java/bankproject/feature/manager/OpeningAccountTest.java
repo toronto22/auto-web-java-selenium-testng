@@ -6,9 +6,16 @@ import bankproject.page_object_model.CustomerAccountPage;
 import bankproject.page_object_model.CustomerLoginPage;
 import bankproject.page_object_model.HomePage;
 import bankproject.page_object_model.OpenAccountPage;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
 import org.junit.Test;
 
+@Feature("Opening Account Tests")
+@DisplayName("Opening Account Tests")
 public class OpeningAccountTest extends WebHook {
     OpenAccountPage openAccountPage;
 
@@ -22,7 +29,9 @@ public class OpeningAccountTest extends WebHook {
     }
 
     @Test
-    public void manager_open_account_for_the_customer() {
+    @Severity(SeverityLevel.CRITICAL)
+    @DisplayName("Manager open account for the customer")
+    public void managerOpenAccountForTheCustomer() {
         openAccountPage.openAccount(BankConstants.CustomerAccountValid.CustomerName, BankConstants.CustomerAccountValid.Currency);
         String newAccountNumber = openAccountPage.getAccountNumberIsCreatedInAlert();
         openAccountPage.verifyAccountIsOpenedAndCloseAlert();
@@ -36,14 +45,20 @@ public class OpeningAccountTest extends WebHook {
 
 
     @Test
-    public void validate_manager_open_account_with_empty_customer_name() {
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Manager is unable to open account with empty customer name")
+    @Description("Opening account validation of customer name field")
+    public void managerOpenAccountWithEmptyCustomerName() {
         openAccountPage.selectCurrency(BankConstants.CustomerAccountValid.Currency);
         openAccountPage.ClickOnProcessButton();
         openAccountPage.verifyCustomerNameValidationMessage(validationMessage);
     }
 
     @Test
-    public void validate_manager_open_account_without_currency() {
+    @Severity(SeverityLevel.NORMAL)
+    @DisplayName("Manager is unable to open account without currency")
+    @Description("Opening account validation of currency field")
+    public void managerIsUnableToOpenAccountWithoutCurrency() {
         openAccountPage.selectCustomer(BankConstants.CustomerAccountValid.CustomerName);
         openAccountPage.ClickOnProcessButton();
         openAccountPage.verifyCurrencyValidationMessage(validationMessage);
