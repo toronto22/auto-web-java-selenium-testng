@@ -43,7 +43,7 @@ public class AddingCustomerTest extends WebHook {
 
     @Test
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Manager is unable to add customer with the empty first_name")
+    @DisplayName("Manager is unable to add customer with the empty first name")
     public void managerIsUnableToAddCustomerWithTheEmptyFirstName() {
         String firstName = "";
         String lastName = "Haa";

@@ -36,21 +36,21 @@ public class AddCustomerPage extends BasePage {
         addCustomer(customer.FirstName, customer.LastName, customer.PostCode);
     }
 
-    @Step("Verify validation message of first name")
+    @Step("Verify validation message of first name is '{message}'")
     public void verifyFirstNameValidationMessage(String message) {
         String currentMessage = selenium.getValidationMessage(firstNameInput);
 
         assertThat(currentMessage, equalTo(message));
     }
 
-    @Step("Verify validation message of last name")
+    @Step("Verify validation message of last name is '{message}'")
     public void verifyLastNameValidationMessage(String message) {
         String currentMessage = selenium.getValidationMessage(lastNameInput);
 
         assertThat(currentMessage, equalTo(message));
     }
 
-    @Step("Verify validation message of post code")
+    @Step("Verify validation message of post code is '{message}'")
     public void verifyPostCodeValidationMessage(String message) {
         String currentMessage = selenium.getValidationMessage(postCodeInput);
 
