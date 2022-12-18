@@ -1,6 +1,8 @@
 package bankproject.feature.customer;
 
 import bankproject.WebHook;
+import bankproject.helper.junit.category.RegressionTests;
+import bankproject.helper.junit.category.SmokeTests;
 import bankproject.model.BankConstants;
 import bankproject.page_object_model.CustomerAccountPage;
 import bankproject.page_object_model.CustomerLoginPage;
@@ -12,13 +14,14 @@ import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.junit4.Tag;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 @Feature("Customer Access Control Tests")
 @DisplayName("Customer Login Tests")
 public class CustomerLoginTest extends WebHook {
     CustomerLoginPage customerLoginPage;
     String yourName = BankConstants.CustomerAccountValid.CustomerName;
-    String yourNameDefaultValue = "---Your Name---";
+    String yourNameDefaultValue = "---Your Name---x";
 
     @Before
     public void classSetUp() {
@@ -53,6 +56,7 @@ public class CustomerLoginTest extends WebHook {
 
     @Test
     @Severity(SeverityLevel.BLOCKER)
+    @Category(SmokeTests.class)
     @DisplayName("Login successfully with valid credential")
     @Tag("Smoke")
     public void loginSuccessfullyWithValidCredential() {

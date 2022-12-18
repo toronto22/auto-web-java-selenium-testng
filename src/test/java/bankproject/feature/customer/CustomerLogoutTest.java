@@ -1,6 +1,7 @@
 package bankproject.feature.customer;
 
 import bankproject.WebHook;
+import bankproject.helper.junit.category.SmokeTests;
 import bankproject.model.BankConstants;
 import bankproject.page_object_model.CustomerAccountPage;
 import bankproject.page_object_model.CustomerLoginPage;
@@ -15,6 +16,7 @@ import org.junit.experimental.categories.Category;
 
 @Feature("Customer Access Control Tests")
 @DisplayName("Customer Logout Tests")
+@Category(SmokeTests.class)
 public class CustomerLogoutTest extends WebHook {
     CustomerLoginPage customerLoginPage;
 

@@ -10,9 +10,9 @@ public class RemoteDriverFactory implements DriverGenerator {
         browserName = browserName.toLowerCase();
         switch (browserName) {
             case "chrome":
-                return new LocalDriverChrome().init();
+                return new RemoteDriverChrome().init();
             case "firefox":
-                return new LocalDriverFirefox().init();
+                return new RemoteDriverFirefox().init();
             default:
                 return null;
         }

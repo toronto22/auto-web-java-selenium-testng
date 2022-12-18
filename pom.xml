@@ -17,6 +17,7 @@
         <allure.version>2.20.1</allure.version>
         <aspectj.version>1.9.9.1</aspectj.version>
         <slf4j.version>2.0.5</slf4j.version>
+        <junit.category.path>bankproject.helper.junit.category</junit.category.path>
     </properties>
 
     <dependencies>
@@ -58,12 +59,12 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
+            <version>1.7.5</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.5</version>
         </dependency>
 
     </dependencies>
@@ -86,6 +87,8 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M3</version>
                     <configuration>
+                        <rerunFailingTestsCount>1</rerunFailingTestsCount>
+                        <groups>${junit.category.path}.SmokeTests, ${junit.category.path}.RegressionTests</groups>
                         <parallel>classes</parallel>
                         <threadCountClasses>10</threadCountClasses>
                         <useSystemClassLoader>false</useSystemClassLoader>
@@ -122,4 +125,25 @@
             </plugins>
         </pluginManagement>
     </build>
+
+
+    <profiles>
+        <profile>
+            <id>regression-tests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <build.profile.id>regression-tests</build.profile.id>
+                <test.categories/>
+            </properties>
+        </profile>
+        <profile>
+            <id>smoke-tests</id>
+            <properties>
+                <build.profile.id>smoke-tests</build.profile.id>
+                <test.categories>${junit.category.path}.SmokeTests</test.categories>
+            </properties>
+        </profile>
+    </profiles>
 </project>

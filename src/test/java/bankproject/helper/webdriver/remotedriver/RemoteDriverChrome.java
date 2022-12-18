@@ -14,6 +14,10 @@ public class RemoteDriverChrome implements Driver {
         WebDriver driver = null;
 
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--whitelisted-ips");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-extensions");
+        
         if (config.IsHeadless) {
             options.addArguments("--headless");
         }

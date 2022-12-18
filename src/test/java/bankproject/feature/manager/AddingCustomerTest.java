@@ -1,18 +1,22 @@
 package bankproject.feature.manager;
 
 import bankproject.WebHook;
+import bankproject.helper.junit.category.SmokeTests;
 import bankproject.page_object_model.AddCustomerPage;
 import bankproject.page_object_model.CustomerLoginPage;
 import bankproject.page_object_model.ManagerPage;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Flaky;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 @Feature("Adding Customer Tests")
 @DisplayName("Adding Customer Tests")
+@Category(SmokeTests.class)
 public class AddingCustomerTest extends WebHook {
     AddCustomerPage addCustomerPage;
 
@@ -66,6 +70,7 @@ public class AddingCustomerTest extends WebHook {
     @Test
     @Severity(SeverityLevel.NORMAL)
     @DisplayName("Manager is unable to add customer with the empty post code")
+    @Flaky
     public void managerIsUnableToAddCustomerWithTheEmptyPostCode() {
         String firstName = "W33";
         String lastName = "Haa";

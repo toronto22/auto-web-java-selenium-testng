@@ -31,8 +31,33 @@ To execute test with Selenium Grid, we have to install that one by follow the ar
 When we have Selenium Grid is install, we can open `appsettings.json` file to edit configuration that will make
 the project execute test with Selenium Grid:
 - Change `IsSeleniumGrid` variable to `true` value,that will make project execute tests using Selenium Grid.
-- Update `GridHubUri` variable to our Selenium Grid URI by replace `{your-ip-address}` by our current IP address. (Example: `http://172.29.64.1:4444/wd/hub`) 
+- Update `GridHubUri` variable to our Selenium Grid URI when we already have Selenium Grid is set up and have Selenium Grid URI. If we have Selenium Grid on local Docker, we can keep use `localhost` value.
 - Update `Browser` variable to the browser we want to use (Make sure our Selenium Grid support that browser).
 
+## Generate report
+
+After execute test with the command `mvn clean verify` we will get the allure results in folder `target/allure-results`, to show the allure report
+we can use the command:
+
+```js
+mvn allure:serve
+```
+
+that command will be show the allure report in html format on our local computer.
+
+## Apply CICD with Jenkins Pipeline
+If the Jenkins is not installed, we can install it following [Jenkins - Installation](https://toronto22.github.io/jenkins_installation/)
+
+To create Jenkins Pipeline for our project, we follow those steps:
+- Access Jenkins Dashboard page
+- Click `New item`
+- Enter `valid name`, select `pipeline option` and click `ok`
+- In Project Configure page we scroll down to Pipeline section and select `Definition` field with `Pipeline Script from SCM` value
+- Select `SCM` field to `Git` value 
+- Input our project git repository in to `Repository URL` (Example: https://github.com/toronto22/web-app-selenium-junit4-autotest.git)
+- Select the valid Credential of our `Github account` //TODO How to add new Github credential to jenkins 
+- Select `Branch Specifier` field with the branch you want to apply pipeline
+- With `Script Path` we can keep the `Jenkinsfile` value or change it if we move the Jenkinsfile to other folder
+- Click on `Save`
 # Pending issue
 - Cannot change the severity of test cases, therefore all the test cases will have default severity is `Normal`

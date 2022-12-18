@@ -1,6 +1,8 @@
 package bankproject.feature.customer;
 
 import bankproject.WebHook;
+import bankproject.helper.junit.category.RegressionTests;
+import bankproject.helper.junit.category.SmokeTests;
 import bankproject.model.BankConstants;
 import bankproject.page_object_model.CustomerAccountPage;
 import bankproject.page_object_model.CustomerLoginPage;
@@ -12,6 +14,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 @Feature("Customer Transactions Tests")
 @DisplayName("Customer Transactions Tests")
@@ -35,6 +38,7 @@ public class CustomerTransactionsTest extends WebHook {
 
     @Test
     @Severity(SeverityLevel.CRITICAL)
+    @Category(SmokeTests.class)
     @DisplayName("Customer deposits money with valid amount")
     public void customerDepositsMoneyWithValidAmount() {
         int currentBalance = customerAccountPage.getBalance();
@@ -50,6 +54,7 @@ public class CustomerTransactionsTest extends WebHook {
 
     @Test
     @Severity(SeverityLevel.CRITICAL)
+    @Category(SmokeTests.class)
     @DisplayName("Customer is unable to withdraw the money that exceed the balance")
     public void customerIsUnableToWithdrawTheMoneyThatExceedTheBalance() {
         customerAccountPage.depositMoney().withAmount(amount);
@@ -65,6 +70,7 @@ public class CustomerTransactionsTest extends WebHook {
 
     @Test
     @Severity(SeverityLevel.CRITICAL)
+    @Category(SmokeTests.class)
     @DisplayName("Customer withdraws money with valid amount")
     public void customerWithdrawsMoneyWithValidAmount() {
         customerAccountPage.depositMoney().withAmount(amount);

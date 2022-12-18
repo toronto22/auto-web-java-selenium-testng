@@ -9,9 +9,9 @@ public class DriverFactory {
         DriverGenerator driverFactory;
 
         if (isGrid) {
-            driverFactory = new LocalDriverFactory();
-        } else {
             driverFactory = new RemoteDriverFactory();
+        } else {
+            driverFactory = new LocalDriverFactory();
         }
 
         return driverFactory.generateDriver(browserName);

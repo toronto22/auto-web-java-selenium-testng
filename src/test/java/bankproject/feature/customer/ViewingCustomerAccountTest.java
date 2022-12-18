@@ -1,6 +1,7 @@
 package bankproject.feature.customer;
 
 import bankproject.WebHook;
+import bankproject.helper.junit.category.SmokeTests;
 import bankproject.model.Account;
 import bankproject.model.BankConstants;
 import bankproject.page_object_model.CustomerAccountPage;
@@ -11,9 +12,11 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 @Feature("Viewing Customer Account Tests")
 @DisplayName("Viewing Customer Account Tests")
+@Category(SmokeTests.class)
 public class ViewingCustomerAccountTest extends WebHook {
     CustomerAccountPage customerAccountPage;
     Account account;
