@@ -9,8 +9,21 @@
          stage('Tests') {
              steps {
                  sh 'mvn clean install'
-                 junit '**/target/surefire-reports/*.xml'
              }
+         }
+     }
+
+     stage('reports') {
+         steps {
+         script {
+                 allure([
+                         includeProperties: false,
+                         jdk: '',
+                         properties: [],
+                         reportBuildPolicy: 'ALWAYS',
+                         results: [[path: 'target/allure-results']]
+                 ])
+         }
          }
      }
  }
