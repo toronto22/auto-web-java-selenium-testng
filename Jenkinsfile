@@ -9,9 +9,7 @@
          stage('Tests') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-                    steps {
-                        sh 'mvn clean install'
-                    }
+                    sh 'mvn clean install'
                 }
             }
          }
