@@ -6,7 +6,6 @@
      }
 
      stages {
-
          stage('Tests') {
              steps {
                  sh 'mvn clean install'
