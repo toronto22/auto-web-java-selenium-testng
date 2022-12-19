@@ -7,11 +7,13 @@
 
      stages {
          stage('Tests') {
-             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-                 steps {
-                     sh 'mvn clean install'
-                 }
-             }
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+                    steps {
+                        sh 'mvn clean install'
+                    }
+                }
+            }
          }
 
          stage('reports') {
