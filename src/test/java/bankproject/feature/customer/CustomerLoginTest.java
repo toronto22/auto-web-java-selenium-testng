@@ -21,7 +21,7 @@ import org.junit.experimental.categories.Category;
 public class CustomerLoginTest extends WebHook {
     CustomerLoginPage customerLoginPage;
     String yourName = BankConstants.CustomerAccountValid.CustomerName;
-    String yourNameDefaultValue = "---Your Name---x";
+    String yourNameDefaultValue = "---Your Name---";
 
     @Before
     public void classSetUp() {
