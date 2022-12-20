@@ -63,3 +63,5 @@ To create Jenkins Pipeline for our project, we follow those steps:
 - Click on `Save`
 # Pending issue
 - Cannot change the severity of test cases, therefore all the test cases will have default severity is `Normal`
+- Cannot attach screenshot to Allure report
+- Not able to execute test by environment configure
