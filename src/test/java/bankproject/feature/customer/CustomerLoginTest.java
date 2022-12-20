@@ -1,7 +1,6 @@
 package bankproject.feature.customer;
 
 import bankproject.WebHook;
-import bankproject.helper.junit.category.RegressionTests;
 import bankproject.helper.junit.category.SmokeTests;
 import bankproject.model.BankConstants;
 import bankproject.page_object_model.CustomerAccountPage;

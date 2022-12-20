@@ -17,12 +17,14 @@ may not match with our current browser version. So we need to download and use t
 - Firefox driver: [Geckodriver.exe](https://github.com/mozilla/geckodriver/releases)
 - Edge driver: [msedgedriver.exe](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)
 
-After download new driver we can execute test with commandline `mvn clean verify`
-
 To run test in headless mode or other browser we can edit the configuration on `appsettings.json`
 
 - Change `IsHeadless` variable to `true` will make script run on headless mode
 - Change `Browser` variable to `Chrome`, `Firefox` or `Edge` to run script on selected browser.
+- Change `IsSeleniumGrid` variable to `false` to run test on local
+
+After download new driver we can execute test with commandline `mvn clean verify`
+
 
 ## Execute test with Selenium Grid
 To execute test with Selenium Grid, we have to install that one by follow the article:
