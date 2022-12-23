@@ -9,36 +9,32 @@ import bankproject.page_object_model.OpenAccountPage;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.junit4.DisplayName;
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 
 @Feature("Viewing List Customer Tests")
-@DisplayName("Viewing List Customer Tests")
+@Test(description = "Viewing List Customer Tests")
 public class ViewingListCustomerTest extends WebHook {
     ListCustomersPage listCustomersPage;
 
     int numberOfItem = 5;
 
-    @Before
+    @BeforeMethod
     public void classSetUp() {
         listCustomersPage = new ListCustomersPage(driver);
         listCustomersPage.goTo();
     }
 
-    @Test
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Manager view list customer table")
+    @Test(description = "Manager view list customer table")
     public void managerViewListCustomerTable() {
         listCustomersPage.goTo();
         listCustomersPage.verifyListCustomerTable(numberOfItem);
     }
 
-    @Test
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Manager create new customer")
     public void managerCreateNewCustomer() {
         Customer customer = new Customer("W33", "Haa", "1234");
 
@@ -63,9 +59,8 @@ public class ViewingListCustomerTest extends WebHook {
         listCustomersPage.verifyCustomerIsExisted(customer);
     }
 
-    @Test
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Manager delete the customer")
+    @Test(description = "Manager delete the customer")
     public void managerDeleteTheCustomer() {
 
         Customer customer = new Customer("W33", "Haa", "1234");

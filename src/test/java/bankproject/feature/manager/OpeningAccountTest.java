@@ -1,7 +1,6 @@
 package bankproject.feature.manager;
 
 import bankproject.WebHook;
-import bankproject.helper.junit.category.SmokeTests;
 import bankproject.model.BankConstants;
 import bankproject.page_object_model.CustomerAccountPage;
 import bankproject.page_object_model.CustomerLoginPage;
@@ -11,29 +10,25 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.junit4.DisplayName;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 @Feature("Opening Account Tests")
-@DisplayName("Opening Account Tests")
-@Category(SmokeTests.class)
+@Test(description = "Opening Account Tests")
 public class OpeningAccountTest extends WebHook {
     OpenAccountPage openAccountPage;
 
     String validationMessage = "Please select an item in the list.";
 
 
-    @Before
+    @BeforeMethod
     public void classSetUp() {
         openAccountPage = new OpenAccountPage(driver);
         openAccountPage.goTo();
     }
 
-    @Test
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Manager open account for the customer")
+    @Test(description = "Manager open account for the customer")
     public void managerOpenAccountForTheCustomer() {
         openAccountPage.openAccount(BankConstants.CustomerAccountValid.CustomerName, BankConstants.CustomerAccountValid.Currency);
         String newAccountNumber = openAccountPage.getAccountNumberIsCreatedInAlert();
@@ -47,9 +42,8 @@ public class OpeningAccountTest extends WebHook {
     }
 
 
-    @Test
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Manager is unable to open account with empty customer name")
+    @Test(description = "Manager is unable to open account with empty customer name")
     @Description("Opening account validation of customer name field")
     public void managerOpenAccountWithEmptyCustomerName() {
         openAccountPage.selectCurrency(BankConstants.CustomerAccountValid.Currency);
@@ -57,9 +51,8 @@ public class OpeningAccountTest extends WebHook {
         openAccountPage.verifyCustomerNameValidationMessage(validationMessage);
     }
 
-    @Test
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Manager is unable to open account without currency")
+    @Test(description = "Manager is unable to open account without currency")
     @Description("Opening account validation of currency field")
     public void managerIsUnableToOpenAccountWithoutCurrency() {
         openAccountPage.selectCustomer(BankConstants.CustomerAccountValid.CustomerName);

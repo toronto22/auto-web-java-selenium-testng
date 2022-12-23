@@ -1,4 +1,4 @@
-# Web app selenium junit4 autotest
+# Web app selenium TestNG autotest
 This is a Web Application's automation test script that following 
 page object model approach. The project support Allure report and CICD with Jenkins.
 
@@ -62,6 +62,4 @@ To create Jenkins Pipeline for our project, we follow those steps:
 - With `Script Path` we can keep the `Jenkinsfile` value or change it if we move the Jenkinsfile to other folder
 - Click on `Save`
 # Pending issue
-- Cannot change the severity of test cases, therefore all the test cases will have default severity is `Normal`
-- Cannot attach screenshot to Allure report
 - Not able to execute test by environment configure

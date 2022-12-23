@@ -1,8 +1,6 @@
 package bankproject.feature.customer;
 
 import bankproject.WebHook;
-import bankproject.helper.junit.category.RegressionTests;
-import bankproject.helper.junit.category.SmokeTests;
 import bankproject.model.BankConstants;
 import bankproject.page_object_model.CustomerAccountPage;
 import bankproject.page_object_model.CustomerLoginPage;
@@ -11,13 +9,11 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.junit4.DisplayName;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 @Feature("Customer Transactions Tests")
-@DisplayName("Customer Transactions Tests")
+@Test(description = "Customer Transactions Tests")
 public class CustomerTransactionsTest extends WebHook {
     CustomerAccountPage customerAccountPage;
 
@@ -29,17 +25,15 @@ public class CustomerTransactionsTest extends WebHook {
     String depositType = "Credit";
     String withdrawType = "Debit";
 
-    @Before
+    @BeforeMethod
     public void classSetUp() {
         CustomerLoginPage customerLoginPage = new CustomerLoginPage(driver);
         customerLoginPage.goTo();
         customerAccountPage = customerLoginPage.login(BankConstants.CustomerAccountValid.CustomerName);
     }
 
-    @Test
     @Severity(SeverityLevel.CRITICAL)
-    @Category(SmokeTests.class)
-    @DisplayName("Customer deposits money with valid amount")
+    @Test(description = "Customer deposits money with valid amount")
     public void customerDepositsMoneyWithValidAmount() {
         int currentBalance = customerAccountPage.getBalance();
         customerAccountPage.depositMoney().withAmount(amount);
@@ -52,10 +46,8 @@ public class CustomerTransactionsTest extends WebHook {
         customerAccountPage.transactions().verifyLastCustomerTransaction(amount, depositType);
     }
 
-    @Test
     @Severity(SeverityLevel.CRITICAL)
-    @Category(SmokeTests.class)
-    @DisplayName("Customer is unable to withdraw the money that exceed the balance")
+    @Test(description = "Customer is unable to withdraw the money that exceed the balance")
     public void customerIsUnableToWithdrawTheMoneyThatExceedTheBalance() {
         customerAccountPage.depositMoney().withAmount(amount);
 
@@ -68,10 +60,8 @@ public class CustomerTransactionsTest extends WebHook {
         customerAccountPage.verifyBalance(currentBalance);
     }
 
-    @Test
     @Severity(SeverityLevel.CRITICAL)
-    @Category(SmokeTests.class)
-    @DisplayName("Customer withdraws money with valid amount")
+    @Test(description = "Customer withdraws money with valid amount")
     public void customerWithdrawsMoneyWithValidAmount() {
         customerAccountPage.depositMoney().withAmount(amount);
         int currentBalance = customerAccountPage.getBalance();
@@ -84,9 +74,8 @@ public class CustomerTransactionsTest extends WebHook {
         customerAccountPage.transactions().verifyLastCustomerTransaction(amount, withdrawType);
     }
 
-    @Test
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Customer resets the customer transactions")
+    @Test(description = "Customer resets the customer transactions")
     @Description("Customer is able to remove all of the their transactions")
     public void customerResetsTheCustomerTransactions() {
         customerAccountPage.depositMoney().withAmount(amount);

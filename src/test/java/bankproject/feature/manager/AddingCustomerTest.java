@@ -1,7 +1,6 @@
 package bankproject.feature.manager;
 
 import bankproject.WebHook;
-import bankproject.helper.junit.category.SmokeTests;
 import bankproject.page_object_model.AddCustomerPage;
 import bankproject.page_object_model.CustomerLoginPage;
 import bankproject.page_object_model.ManagerPage;
@@ -9,29 +8,25 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Flaky;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.junit4.DisplayName;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 @Feature("Adding Customer Tests")
-@DisplayName("Adding Customer Tests")
-@Category(SmokeTests.class)
+@Test(description = "Adding Customer Tests")
 public class AddingCustomerTest extends WebHook {
     AddCustomerPage addCustomerPage;
 
     String errorMessage = "Please fill out this field.";
 
-    @Before
+    @BeforeMethod
     public void classSetUp() {
         ManagerPage managerPage = new ManagerPage(driver);
         managerPage.goTo();
         addCustomerPage = managerPage.goToAddCustomerPage();
     }
 
-    @Test
     @Severity(SeverityLevel.CRITICAL)
-    @DisplayName("Manager adds customer with valid customer information")
+    @Test(description = "Manager adds customer with valid customer information")
     public void managerAddsCustomerWithValidCustomerInformation() {
         String firstName = "W33";
         String lastName = "Haa";
@@ -45,9 +40,8 @@ public class AddingCustomerTest extends WebHook {
         customerLoginPage.login(newCustomerName).verifyTheCustomerIsLoggedIn(newCustomerName);
     }
 
-    @Test
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Manager is unable to add customer with the empty first name")
+    @Test(description = "Manager is unable to add customer with the empty first name")
     public void managerIsUnableToAddCustomerWithTheEmptyFirstName() {
         String firstName = "";
         String lastName = "Haa";
@@ -56,9 +50,8 @@ public class AddingCustomerTest extends WebHook {
         addCustomerPage.verifyFirstNameValidationMessage(errorMessage);
     }
 
-    @Test
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Manager is unable to add customer with the empty last name")
+    @Test(description = "Manager is unable to add customer with the empty last name")
     public void managerIsUnableToAddCustomerWithTheEmptyLastName() {
         String firstName = "W33";
         String lastName = "";
@@ -67,9 +60,8 @@ public class AddingCustomerTest extends WebHook {
         addCustomerPage.verifyLastNameValidationMessage(errorMessage);
     }
 
-    @Test
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("Manager is unable to add customer with the empty post code")
+    @Test(description = "Manager is unable to add customer with the empty post code")
     @Flaky
     public void managerIsUnableToAddCustomerWithTheEmptyPostCode() {
         String firstName = "W33";
