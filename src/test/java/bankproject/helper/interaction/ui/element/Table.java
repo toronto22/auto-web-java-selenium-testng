@@ -19,7 +19,7 @@ public class Table {
     }
 
     public List<List<String>> getTableData() {
-        List<List<String>> retults = new ArrayList<>();
+        List<List<String>> results = new ArrayList<>();
         WebElement tbody = table.findElement(By.tagName("tbody"));
         List<WebElement> rows = tbody.findElements(By.tagName("tr"));
         for (WebElement row : rows) {
@@ -28,9 +28,9 @@ public class Table {
             for (WebElement cell : cells) {
                 rowData.add(cell.getText());
             }
-            retults.add(rowData);
+            results.add(rowData);
         }
 
-        return retults;
+        return results;
     }
 }

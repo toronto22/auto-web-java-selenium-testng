@@ -18,12 +18,6 @@ public class WaitUntil {
         this.by = by;
     }
 
-    public WaitUntil(WebDriver driver, By by, Duration timeOut) {
-        this.driver = driver;
-        this.timeout = timeOut;
-        this.by = by;
-    }
-
     public WebElement visible() {
         WebDriverWait wait = new WebDriverWait(driver, timeout);
 
@@ -34,5 +28,11 @@ public class WaitUntil {
         WebDriverWait wait = new WebDriverWait(driver, timeout);
 
         return wait.until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
+    public void valueTobe(String value) {
+        WebDriverWait wait = new WebDriverWait(driver, timeout);
+
+        wait.until(ExpectedConditions.attributeToBe(by, "value", value));
     }
 }

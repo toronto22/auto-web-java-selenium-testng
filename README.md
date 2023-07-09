@@ -8,14 +8,7 @@ page object model approach. The project support Allure report and CICD with Jenk
 - IntelliJ (Recommended)
 # Get started 
 
-## Execute test on local
-
-The `chromedriver.exe`, `geckodriver.exe` and `msedgedriver.exe` may be old version, and it 
-may not match with our current browser version. So we need to download and use the matched version
-(It is usually the newest version). To download those drivers we can access following links:
-- Chrome driver: [ChromeDriver.exe](https://chromedriver.chromium.org/downloads)
-- Firefox driver: [Geckodriver.exe](https://github.com/mozilla/geckodriver/releases)
-- Edge driver: [msedgedriver.exe](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/)
+## Execute test on 
 
 To run test in headless mode or other browser we can edit the configuration on `appsettings.json`
 
@@ -42,7 +35,7 @@ After execute test with the command `mvn clean verify` we will get the allure re
 we can use the command:
 
 ```js
-mvn allure:serve
+`mvn allure:serve`
 ```
 
 that command will be show the allure report in html format on our local computer.
@@ -57,9 +50,12 @@ To create Jenkins Pipeline for our project, we follow those steps:
 - In Project Configure page we scroll down to Pipeline section and select `Definition` field with `Pipeline Script from SCM` value
 - Select `SCM` field to `Git` value 
 - Input our project git repository in to `Repository URL`
-- Select the valid Credential of our `Github account` //TODO How to add new Github credential to jenkins 
+- Select the valid Credential of our `Github account` //TODO How to add new GitHub credential to jenkins 
 - Select `Branch Specifier` field with the branch you want to apply pipeline
 - With `Script Path` we can keep the `Jenkinsfile` value or change it if we move the Jenkinsfile to other folder
 - Click on `Save`
 # Pending issue
 - Not able to execute test by environment configure
+
+## To kill drivers
+taskkill -F -IM chromedriver.exe

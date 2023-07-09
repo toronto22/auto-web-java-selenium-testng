@@ -22,9 +22,9 @@ public class CustomerAccountPage extends CustomerPage {
     By accountNumberTxt = By.xpath("//*[@ng-hide='noAccount']/strong[1]");
     By balanceTxt = By.xpath("//*[@ng-hide='noAccount']/strong[2]");
     By currencyTxt = By.xpath("//*[@ng-hide='noAccount']/strong[3]");
-    By transactionBtn = By.xpath("//*[@ng-class='btnClass1']");
-    By depositBtn = By.xpath("//*[@ng-class='btnClass2']");
-    By withdrawBtn = By.xpath("//*[@ng-class='btnClass3']");
+    By transactionBtn = By.xpath("//button[contains(text(),'Transactions')]");
+    By depositBtn = By.xpath("//button[contains(text(),'Deposit')]");
+    By withdrawBtn = By.xpath("//button[contains(text(),'Withdrawl')]");
 
     public CustomerAccountPage(WebDriver driver) {
         this.driver = driver;
@@ -51,10 +51,13 @@ public class CustomerAccountPage extends CustomerPage {
     }
 
     public WithdrawPanel withdraw() {
-        selenium.waitUntil(withdrawBtn).visible().click();
-        selenium.sleep(2);
-
         return new WithdrawPanel(driver);
+    }
+
+    public void openWithdrawTab() {
+        selenium.waitUntil(withdrawBtn).visible().click();
+
+        new WithdrawPanel(driver);
     }
 
     @Step("Get balance")
@@ -107,7 +110,7 @@ public class CustomerAccountPage extends CustomerPage {
     }
 
     public static class DepositPanel extends BasePage {
-        By amountInput = By.xpath("//input[@ng-model='amount']");
+        By amountInput = By.xpath("//*[@ng-submit='deposit()']//input");
         By depositBtn = By.xpath("//form[@name='myForm']/button");
         By errorMessageTxt = By.className("error");
 
@@ -120,6 +123,8 @@ public class CustomerAccountPage extends CustomerPage {
         public void withAmount(int amount) {
             selenium.waitUntil(amountInput).visible().sendKeys(String.valueOf(amount));
             selenium.waitUntil(depositBtn).visible().click();
+
+            selenium.waitUntil(amountInput).valueTobe("");
         }
 
         @Step("Verify deposit message")
@@ -131,7 +136,7 @@ public class CustomerAccountPage extends CustomerPage {
     }
 
     public static class WithdrawPanel extends BasePage {
-        By amountInput = By.xpath("//input[@ng-model='amount']");
+        By amountInput = By.xpath("//*[@ng-submit='withdrawl()']//input");
         By withdrawBtn = By.xpath("//form[@name='myForm']/button");
         By errorMessageTxt = By.className("error");
 
@@ -142,8 +147,11 @@ public class CustomerAccountPage extends CustomerPage {
 
         @Step("Withdraw with amount")
         public void withAmount(int amount) {
+            selenium.waitUntil(withdrawBtn).visible();
+
             selenium.waitUntil(amountInput).visible().sendKeys(String.valueOf(amount));
             selenium.waitUntil(withdrawBtn).visible().click();
+            selenium.sleep(2);
         }
 
         @Step("Verify withdraw message")

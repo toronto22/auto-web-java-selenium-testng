@@ -54,6 +54,8 @@ public class CustomerTransactionsTest extends WebHook {
         int currentBalance = customerAccountPage.getBalance();
 
         int exceedBalanceLimitNumber = currentBalance + 1;
+
+        customerAccountPage.openWithdrawTab();
         customerAccountPage.withdraw().withAmount(exceedBalanceLimitNumber);
 
         customerAccountPage.withdraw().verifyMessage(messageExceedBalanceLimit);
@@ -66,9 +68,10 @@ public class CustomerTransactionsTest extends WebHook {
         customerAccountPage.depositMoney().withAmount(amount);
         int currentBalance = customerAccountPage.getBalance();
 
+        customerAccountPage.openWithdrawTab();
         customerAccountPage.withdraw().withAmount(amount);
-        int expectedBalance = currentBalance - amount;
 
+        int expectedBalance = currentBalance - amount;
         customerAccountPage.withdraw().verifyMessage(messageWithdrawSuccessfully);
         customerAccountPage.verifyBalance(expectedBalance);
         customerAccountPage.transactions().verifyLastCustomerTransaction(amount, withdrawType);
