@@ -1,9 +1,8 @@
 package bankproject.helper;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
-import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 
 public class ConfigurationHelper {
@@ -15,20 +14,27 @@ public class ConfigurationHelper {
     public String GridHubUri;
 
     private ConfigurationHelper() {
+        Properties properties = new Properties();
+        InputStream inputStream = null;
+
         try {
-
-            Gson gson = new Gson();
-
-            try (FileReader reader = new FileReader("appsettings.json")) {
-                //Read JSON file
-                JsonObject obj = gson.fromJson(reader, JsonObject.class);
-                this.Browser = obj.get("Browser").getAsString();
-                this.IsHeadless = obj.get("IsHeadless").getAsBoolean();
-                this.IsSeleniumGrid = obj.get("IsSeleniumGrid").getAsBoolean();
-                this.GridHubUri = obj.get("GridHubUri").getAsString();
+            inputStream = ConfigurationHelper.class.getClassLoader()
+                    .getResourceAsStream("config.properties");
+            properties.load(inputStream);
+            Browser = properties.getProperty("Browser");
+            IsHeadless = Boolean.valueOf(properties.getProperty("IsHeadless"));
+            IsSeleniumGrid = Boolean.valueOf(properties.getProperty("IsSeleniumGrid"));
+            GridHubUri = properties.getProperty("GridHubUri");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
