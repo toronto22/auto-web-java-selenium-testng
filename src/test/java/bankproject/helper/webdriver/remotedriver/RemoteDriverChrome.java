@@ -17,7 +17,8 @@ public class RemoteDriverChrome implements Driver {
         options.addArguments("--whitelisted-ips");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-extensions");
-        
+        options.addArguments("--disable-dev-shm-usage");
+
         if (config.IsHeadless) {
             options.addArguments("--headless");
         }

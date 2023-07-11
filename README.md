@@ -55,7 +55,7 @@ To create Jenkins Pipeline for our project, we follow those steps:
 - With `Script Path` we can keep the `Jenkinsfile` value or change it if we move the Jenkinsfile to other folder
 - Click on `Save`
 # Pending issue
-- Not able to execute test by environment configure
+- Cannot run it on local firefox
 
 ## To kill drivers
 taskkill -F -IM chromedriver.exe
